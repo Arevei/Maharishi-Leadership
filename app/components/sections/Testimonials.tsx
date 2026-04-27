@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { motion } from "framer-motion";
 
 const quotes = [
@@ -8,7 +9,7 @@ const quotes = [
     role: "Founder & Co-CIO, Bridgewater Associates",
   },
   {
-    text: "My creativity improved. I can solve problems faster and more easily. I can focus for longer periods of time — and I am happier.",
+    text: "My creativity improved. I can solve problems faster and more easily. I can focus for longer periods of time - and I am happier.",
     name: "Rahul Vohra",
     role: "Founder & CEO, Superhuman",
   },
@@ -45,36 +46,36 @@ export function Testimonials() {
           className="max-w-3xl mb-16"
         >
           <p className="flex items-center gap-3 text-[hsl(var(--peach))] uppercase text-[11px] tracking-[0.3em] font-medium mb-6">
-            <span className="w-7 h-px bg-[hsl(var(--peach))]" /> Voices from the Field
+            <span className="w-7 h-px bg-[hsl(var(--peach))]" /> Voices from
+            the Field
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.05] font-light">
-            What{" "}
-            <em className="italic text-[hsl(var(--peach))]">leaders</em> say
-            after the practice has settled in.
+            What <em className="italic text-[hsl(var(--peach))]">leaders</em>{" "}
+            say after the practice has settled in.
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-primary-foreground/[0.08]">
-          {quotes.map((q, i) => (
+          {quotes.map((quote, index) => (
             <motion.div
-              key={q.name}
+              key={quote.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.15 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
               className="bg-primary p-10 hover:bg-primary-foreground/[0.04] transition-colors"
             >
               <div className="font-serif text-6xl text-[hsl(var(--peach))] leading-none mb-2">
-                "
+                &ldquo;
               </div>
               <p className="font-serif text-lg sm:text-xl md:text-2xl italic font-light leading-[1.5] text-primary-foreground mb-8">
-                {q.text}
+                {quote.text}
               </p>
               <p className="text-[12px] uppercase tracking-[0.15em] text-[hsl(var(--peach))] font-medium">
-                {q.name}
+                {quote.name}
               </p>
               <p className="text-[12px] text-primary-foreground/45 mt-1">
-                {q.role}
+                {quote.role}
               </p>
             </motion.div>
           ))}
@@ -87,12 +88,12 @@ export function Testimonials() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-20 border-t border-primary-foreground/10 flex flex-wrap"
         >
-          {companies.map((c) => (
+          {companies.map((company) => (
             <div
-              key={c}
+              key={company}
               className="px-6 md:px-9 py-6 text-[13px] font-medium text-primary-foreground/35 hover:text-primary-foreground/85 transition-colors border-r border-primary-foreground/10 last:border-r-0"
             >
-              {c}
+              {company}
             </div>
           ))}
         </motion.div>

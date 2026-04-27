@@ -1,28 +1,176 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --plum: 212 67% 18%;
+  --plum-soft: 208 60% 34%;
+  --plum-mid: 210 17% 42%;
+
+  --cream: 210 57% 98%;
+  --cream-deep: 205 58% 93%;
+  --cream-card: 0 0% 100%;
+
+  --sky: 203 72% 84%;
+  --sky-deep: 204 66% 46%;
+
+  --peach: 44 78% 62%;
+  --peach-deep: 40 65% 46%;
+
+  --background: var(--cream);
+  --foreground: 212 46% 20%;
+
+  --border: 207 39% 84%;
+  --input: 207 39% 84%;
+  --ring: var(--sky-deep);
+
+  --card: var(--cream-card);
+  --card-foreground: 212 46% 20%;
+
+  --popover: var(--cream-card);
+  --popover-foreground: 212 46% 20%;
+
+  --primary: var(--plum);
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 205 68% 95%;
+  --secondary-foreground: var(--plum);
+
+  --muted: 205 42% 92%;
+  --muted-foreground: var(--plum-mid);
+
+  --accent: var(--peach-deep);
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --radius: 1rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-code);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: hsl(var(--background));
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image:
+      radial-gradient(circle at top left, hsl(var(--sky) / 0.45), transparent 22rem),
+      radial-gradient(circle at top right, hsl(var(--peach) / 0.16), transparent 18rem),
+      linear-gradient(
+        180deg,
+        hsl(var(--cream)) 0%,
+        hsl(var(--cream-deep)) 44%,
+        hsl(var(--cream)) 100%
+      );
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(135deg, hsl(var(--primary) / 0.03), transparent 42%),
+      linear-gradient(315deg, hsl(var(--sky-deep) / 0.04), transparent 38%);
+    opacity: 0.9;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button {
+    transition:
+      color 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      opacity 220ms ease;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
+
+  img {
+    display: block;
+  }
+
+  ::selection {
+    background-color: hsl(var(--peach) / 0.92);
+    color: hsl(var(--primary));
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-
-

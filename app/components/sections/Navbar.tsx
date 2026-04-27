@@ -1,28 +1,20 @@
-"use client"
-import { useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import treeLogo from "@assets/Tree_logo_without_text_1777025722071.jpg";
+"use client";
 
-const links = [
-  { label: "The Premise", id: "about" },
-  { label: "Science", id: "science" },
-  { label: "Benefits", id: "benefits" },
-  { label: "Programme", id: "programme" },
-  { label: "Curriculum", id: "curriculum" },
-  { label: "Voices", id: "testimonials" },
-];
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { getContactHref } from "@/data/contact";
+import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (v) => setIsScrolled(v > 40));
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setOpen(false);
-  };
+  useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
 
   return (
     <motion.header
@@ -36,33 +28,54 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#top" className={`flex items-center gap-3 group transition-colors ${isScrolled ? "text-primary" : "text-primary-foreground"}`}>
-          <img
-            src="./Maharishi-logo.jpg"
+        <Link
+          href="/"
+          className={`flex items-center gap-3 group transition-colors ${
+            isScrolled ? "text-primary" : "text-primary-foreground"
+          }`}
+        >
+          <Image
+            src="/Maharishi-logo.jpg"
             alt="Maharishi Center for Leadership tree-of-life mark"
+            width={44}
+            height={44}
             className="w-11 h-11 rounded-full object-cover shadow-sm shrink-0"
           />
           <span className="font-serif text-xl tracking-tight">
-            Maharishi <em className={`not-italic ${isScrolled ? "text-primary/60" : "text-primary-foreground/70"}`}>Leadership</em>
-          </span>
-        </a>
-
-        <nav className="hidden lg:flex items-center gap-9">
-          {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => scrollTo(l.id)}
-              className={`text-[13px] tracking-wide transition-colors ${
-                isScrolled
-                  ? "text-primary/70 hover:text-primary"
-                  : "text-primary-foreground/80 hover:text-primary-foreground"
+            Maharishi{" "}
+            <em
+              className={`not-italic ${
+                isScrolled ? "text-primary/60" : "text-primary-foreground/70"
               }`}
             >
-              {l.label}
-            </button>
-          ))}
-          <a
-            href="mailto:Debashish.Sarkar@tm.org?subject=Maharishi%20Center%20for%20Leadership%20%E2%80%94%20Free%20Intro%20Talk"
+              Leadership
+            </em>
+          </span>
+        </Link>
+
+        <nav className="hidden lg:flex items-center gap-9">
+          {primaryNavLinks.map((link) => {
+            const isActive = link.href === pathname;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-[13px] tracking-wide transition-colors ${
+                  isScrolled
+                    ? isActive
+                      ? "text-primary"
+                      : "text-primary/70 hover:text-primary"
+                    : isActive
+                      ? "text-primary-foreground"
+                      : "text-primary-foreground/80 hover:text-primary-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link
+            href={getContactHref("intro-talk")}
             className={`ml-2 px-6 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
               isScrolled
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -71,11 +84,13 @@ export function Navbar() {
             data-testid="nav-cta"
           >
             Free Intro Talk
-          </a>
+          </Link>
         </nav>
 
         <button
-          className={`lg:hidden p-2 z-50 ${isScrolled ? "text-primary" : "text-primary-foreground"}`}
+          className={`lg:hidden p-2 z-50 ${
+            isScrolled ? "text-primary" : "text-primary-foreground"
+          }`}
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
@@ -85,21 +100,23 @@ export function Navbar() {
 
       {open && (
         <div className="fixed inset-0 z-40 bg-background pt-24 px-6 pb-10 flex flex-col gap-2 lg:hidden">
-          {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => scrollTo(l.id)}
+          {primaryNavLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
               className="text-left font-serif text-3xl text-primary py-4 border-b border-border/60"
             >
-              {l.label}
-            </button>
+              {link.label}
+            </Link>
           ))}
-          <a
-            href="mailto:Debashish.Sarkar@tm.org?subject=Maharishi%20Center%20for%20Leadership%20%E2%80%94%20Free%20Intro%20Talk"
+          <Link
+            href={getContactHref("intro-talk")}
+            onClick={() => setOpen(false)}
             className="mt-8 text-center px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm uppercase tracking-[0.2em]"
           >
             Free Intro Talk
-          </a>
+          </Link>
         </div>
       )}
     </motion.header>

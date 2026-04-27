@@ -1,5 +1,8 @@
-"use client"
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { getContactHref } from "@/data/contact";
 
 export function CTA() {
   return (
@@ -48,19 +51,19 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a
-            href="mailto:Debashish.Sarkar@tm.org?subject=Maharishi%20Center%20for%20Leadership%20%E2%80%94%20Free%20Intro%20Talk"
+          <Link
+            href={getContactHref("intro-talk")}
             className="px-10 py-4 rounded-full bg-[hsl(var(--cream))] text-primary text-sm uppercase tracking-[0.2em] font-medium hover:bg-[hsl(var(--sky))] transition-colors w-full sm:w-auto text-center"
             data-testid="cta-primary"
           >
             Book a free intro talk
-          </a>
-          <a
-            href="mailto:Debashish.Sarkar@tm.org?subject=Corporate%20%2F%20Team%20Programme%20%E2%80%94%20Enquiry"
+          </Link>
+          <Link
+            href={getContactHref("corporate-team")}
             className="px-10 py-4 rounded-full border border-primary-foreground/30 text-primary-foreground/80 text-sm uppercase tracking-[0.2em] font-medium hover:border-[hsl(var(--peach))] hover:text-[hsl(var(--peach))] transition-colors w-full sm:w-auto text-center"
           >
             Bring this to my organisation
-          </a>
+          </Link>
         </motion.div>
 
         <motion.p
@@ -70,7 +73,8 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.5 }}
           className="mt-10 text-[11px] uppercase tracking-[0.25em] text-primary-foreground/45"
         >
-          In partnership with CII&nbsp;&nbsp;·&nbsp;&nbsp;Trusted by leaders at Google, IBM, Bridgewater, Tata
+          In partnership with CII&nbsp;&nbsp;&middot;&nbsp;&nbsp;Trusted by
+          leaders at Google, IBM, Bridgewater, Tata
         </motion.p>
       </div>
     </section>

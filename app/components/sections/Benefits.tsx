@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 type TabKey = "mental" | "physical" | "performance";
 
@@ -122,6 +123,10 @@ export function Benefits() {
   return (
     <section id="benefits" className="bg-background py-24 md:py-36">
       <div className="container mx-auto px-6 md:px-12">
+        <div className="flex flex-col lg:flex-row gap-12">
+        <div>
+            <Image src="/images/benefits.jpg" width={600} height={400} alt="EEG coherence" />
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -145,6 +150,7 @@ export function Benefits() {
             cardiovascular health.
           </p>
         </motion.div>
+        </div>
 
         {/* Tabs */}
         <div className="flex flex-wrap gap-0 border-b border-border mb-12">

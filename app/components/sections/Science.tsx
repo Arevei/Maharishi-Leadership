@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 const stats = [
   { num: "600+", label: "Peer-reviewed studies on TM" },
   { num: "250+", label: "Universities and medical institutions" },
@@ -15,6 +15,22 @@ const waves = [
   { label: "Parietal", active: 4, total: 5, stat: "+64% coherence" },
   { label: "Occipital", active: 3, total: 5, stat: "+47% coherence" },
   { label: "Temporal", active: 4, total: 5, stat: "+58% coherence" },
+];
+
+const scienceCollage = [
+  {
+    src: "/images/TM-science.png",
+    alt: "A meditator sitting against a warm sunset sky",
+    className:
+      "absolute -right-30 top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))]",
+  },
+  {
+    src: "/images/tm-1.jpg",
+    alt: "A practitioner meditating at sunrise",
+    className:
+      "absolute left-10 bottom-30 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
+  },
+  
 ];
 
 export function Science() {
@@ -35,7 +51,8 @@ export function Science() {
       />
 
       <div className="container relative mx-auto px-6 md:px-12">
-        <motion.div
+      <div className="flex flex-col lg:flex-row">
+          <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,15 +64,43 @@ export function Science() {
           </p>
           <h2 className="font-serif text-4xl md:text-6xl leading-[1.05] font-light mb-8">
             More than 600 peer-reviewed studies{" "}
-            <em className="italic text-[hsl(var(--peach))]">across five decades.</em>
+            <em className="italic text-[hsl(var(--peach))]">
+              across five decades.
+            </em>
           </h2>
           <p className="text-lg text-primary-foreground/60 leading-[1.85] font-light">
-            Published across the world's leading journals of cardiology,
-            psychology, neuroscience, and public health — including JAMA,
+            Published across the world&apos;s leading journals of cardiology,
+            psychology, neuroscience, and public health - including JAMA,
             Hypertension, The Lancet, and Nature Reviews Cardiology. The most
             extensively researched mind-body practice in the world.
           </p>
         </motion.div>
+          <div className="relative mx-auto h-[430px] w-full max-w-[430px]">
+            <div
+              className="absolute inset-4 rounded-[2.5rem]"
+            />
+            <div className="" />
+
+            {scienceCollage.map((item) => (
+              <div
+                key={item.src}
+                className={`${item.className} relative overflow-hidden shadow-[0_18px_44px_-24px_rgba(0,0,0,0.7)]`}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(min-width: 768px) 24rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+
+          
+          </div>
+        
+        
+        </div>
 
         {/* Stats grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-primary-foreground/[0.08] mb-20">
@@ -79,12 +124,13 @@ export function Science() {
         </div>
 
         {/* Brain coherence visual */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="border border-primary-foreground/10 bg-primary-foreground/[0.03] p-10 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+          className="border border-primary-foreground/10 bg-primary-foreground/[0.03] p-10 md:p-16 space-y-8 "
         >
           <div>
             <p className="text-[10px] uppercase tracking-[0.25em] text-[hsl(var(--peach))] font-medium mb-4">
@@ -100,9 +146,10 @@ export function Science() {
               signature of integrated, high-functioning mental performance.
             </p>
             <p className="text-primary-foreground/55 leading-[1.85] font-light text-[15px]">
-              "Frontal brain coherence correlated directly with creativity,
+              &ldquo;Frontal brain coherence correlated directly with creativity,
               moral reasoning, practical intelligence, and emotional
-              resilience." This is the neural foundation of great leadership.
+              resilience.&rdquo; This is the neural foundation of great
+              leadership.
             </p>
           </div>
           <div className="space-y-4">
@@ -142,7 +189,11 @@ export function Science() {
               }
             `}</style>
           </div>
+          
         </motion.div>
+
+        <Image src="/images/coherence.jpg" width={600} height={400} alt="EEG coherence" />
+        </div>
       </div>
     </section>
   );
