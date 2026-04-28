@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const phases = [
   {
@@ -119,13 +120,19 @@ export function Programme() {
                     >
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div
-                          className="rounded-full bg-[hsl(var(--sky)/0.4)]"
+                          className="rounded-full bg-[hsl(var(--sky)/0.4)] overflow-hidden"
                           style={{
                             width: 360,
                             height: 360,
                             animation: "breathe 6s ease-in-out infinite",
                           }}
-                        />
+                        ><Image
+                                         src="/images/tm-transfromation.webp"
+                                         alt=""
+                                         fill
+                                         sizes="(min-width: 1024px) 26rem, 100vw"
+                                         className="object-cover"
+                                       /></div>
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div
@@ -138,13 +145,15 @@ export function Programme() {
                         />
                       </div>
           
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
-                        <p className="font-serif text-7xl md:text-8xl text-primary leading-none font-light">
-                          TM
-                        </p>
-                        <p className="mt-3 text-[11px] uppercase tracking-[0.3em] text-[hsl(var(--peach-deep))] font-medium">
-                          Effortless Transcending
-                        </p>
+                      <div className="relative inset-0 flex flex-col items-center justify-center text-center z-10 overflow-hidden">
+                        
+                         <Image
+                                         src="/images/tm-transfromation.webp"
+                                         alt=""
+                                         fill
+                                         sizes="(min-width: 1024px) 26rem, 100vw"
+                                         className="object-cover"
+                                       />
                       </div>
           
                       {cards.map((card, index) => (

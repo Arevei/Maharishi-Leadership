@@ -22,7 +22,9 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        isScrolled
+        open
+          ? "bg-primary py-3 border-b border-primary-foreground/10"
+          : isScrolled
           ? "bg-background/85 backdrop-blur-xl py-3 border-b border-border/60"
           : "bg-transparent py-6"
       }`}
@@ -31,7 +33,11 @@ export function Navbar() {
         <Link
           href="/"
           className={`flex items-center gap-3 group transition-colors ${
-            isScrolled ? "text-primary" : "text-primary-foreground"
+            open
+              ? "text-primary-foreground"
+              : isScrolled
+                ? "text-primary"
+                : "text-primary-foreground"
           }`}
         >
           <Image
@@ -45,7 +51,11 @@ export function Navbar() {
             Maharishi{" "}
             <em
               className={`not-italic ${
-                isScrolled ? "text-primary/60" : "text-primary-foreground/70"
+                open
+                  ? "text-primary-foreground/70"
+                  : isScrolled
+                    ? "text-primary/60"
+                    : "text-primary-foreground/70"
               }`}
             >
               Leadership
@@ -89,7 +99,11 @@ export function Navbar() {
 
         <button
           className={`lg:hidden p-2 z-50 ${
-            isScrolled ? "text-primary" : "text-primary-foreground"
+            open
+              ? "text-primary-foreground"
+              : isScrolled
+                ? "text-primary"
+                : "text-primary-foreground"
           }`}
           onClick={() => setOpen(!open)}
           aria-label="Menu"
@@ -99,13 +113,13 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-40 bg-background pt-24 px-6 pb-10 flex flex-col gap-2 lg:hidden">
+        <div className="fixed inset-0 z-40 bg-primary pt-24 px-6 pb-10 flex flex-col gap-2 lg:hidden">
           {primaryNavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-left font-serif text-3xl text-primary py-4 border-b border-border/60"
+              className="text-left font-serif text-3xl text-primary-foreground py-4 border-b border-primary-foreground/14"
             >
               {link.label}
             </Link>
@@ -113,7 +127,7 @@ export function Navbar() {
           <Link
             href={getContactHref("intro-talk")}
             onClick={() => setOpen(false)}
-            className="mt-8 text-center px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm uppercase tracking-[0.2em]"
+            className="mt-8 text-center px-8 py-4 rounded-full bg-[hsl(var(--cream))] text-primary text-sm uppercase tracking-[0.2em] shadow-[0_20px_50px_-30px_rgba(255,255,255,0.7)]"
           >
             Consult Now
           </Link>

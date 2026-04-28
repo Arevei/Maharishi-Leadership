@@ -101,76 +101,40 @@ export function Hero() {
               </span>
             </motion.p>
 
-            <div className="lg:hidden">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSlide.title}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.35,
-                  ease: [0.16, 1, 0.3, 1] as const,
-                }}
-                className="font-serif text-[2.45rem] font-light leading-[1.05] text-primary-foreground sm:text-5xl"
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
-                World-class performance
-                <br />
-                and resilience
-                <br />
-                is built on world-class
-                <br />
-                brain functioning.
-                <br />
-                <em className="italic font-light">Lead at a higher level.</em>
-              </motion.h1>
+                <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                  {/* <span className="rounded-full border border-white/14 bg-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-primary-foreground/82">
+                    {activeSlide.kicker}
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-black/10 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-primary-foreground/56">
+                    {activeSlide.metric}
+                  </span>
+                  */}
+                </div> 
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.55 }}
-                className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-primary-foreground/82"
-              >
-                A 4-month executive development programme backed by 480+
-                peer-reviewed studies that provides the neuro-physiological
-                foundation for clarity, creativity, resilience, and peak
-                performance.
-              </motion.p>
-            </div>
+                <h1 className="mt-7 mx-auto max-w-3xl font-serif text-[2.75rem] font-light leading-[1.02] text-primary-foreground sm:text-[3.5rem] lg:mx-0 lg:text-[4rem] xl:text-[4.5rem]">
+                  {activeSlide.title}
+                </h1>
 
-            <div className="hidden lg:block">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSlide.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full border border-white/14 bg-white/10 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-primary-foreground/82">
-                      {activeSlide.kicker}
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-black/10 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-primary-foreground/56">
-                      {activeSlide.metric}
-                    </span>
-                  </div>
+                <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-[1.85] text-primary-foreground/82 sm:text-lg lg:mx-0 lg:text-xl lg:leading-[1.8]">
+                  {activeSlide.body}
+                </p>
 
-                  <h1 className="mt-7 max-w-3xl font-serif text-[4rem] font-light leading-[0.98] text-primary-foreground xl:text-[5.4rem]">
-                    {activeSlide.title}
-                  </h1>
-
-                  <p className="mt-7 max-w-2xl text-xl font-light leading-[1.8] text-primary-foreground/78">
-                    {activeSlide.body}
-                  </p>
-
-                  <p className="mt-7 max-w-2xl text-[15px] font-light leading-[1.85] text-primary-foreground/54">
-                    A 4-month executive development programme backed by
-                    peer-reviewed research and designed to turn deeper recovery,
-                    steadier attention, and greater resilience into an everyday
-                    leadership advantage.
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                <p className="mx-auto mt-6 max-w-2xl text-sm font-light leading-[1.8] text-primary-foreground/58 lg:mx-0 lg:text-[15px] lg:leading-[1.85]">
+                  A 4-month executive development programme backed by
+                  peer-reviewed research and designed to turn deeper recovery,
+                  steadier attention, and greater resilience into an everyday
+                  leadership advantage.
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -199,7 +163,7 @@ export function Hero() {
               </a>
             </motion.div>
 
-            <div className="hidden lg:flex items-center justify-between gap-6 pt-10">
+            <div className="flex flex-col items-center gap-5 pt-10 sm:flex-row sm:justify-between lg:items-center lg:justify-between">
               <div className="flex items-center gap-2">
                 {heroSlides.map((slide, index) => (
                   <button
@@ -253,98 +217,7 @@ export function Hero() {
             </motion.p>
           </div>
 
-          <div className="lg:hidden">
-            <div className="w-full max-w-sm justify-self-center rounded-[2rem] border border-white/14 bg-white/10 p-4 backdrop-blur-xl shadow-[0_28px_120px_-40px_rgba(4,18,44,0.95)]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${activeSlide.title}-mobile`}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  className="space-y-4"
-                >
-                  <div className="rounded-[1.75rem] bg-[linear-gradient(180deg,hsl(var(--sky)/0.28)_0%,hsl(var(--sky)/0.1)_100%)] p-3">
-                    <div className="relative aspect-[4/4.7] overflow-hidden rounded-[1.35rem] bg-[hsl(var(--sky)/0.26)]">
-                      <Image
-                        src={activeSlide.image}
-                        alt={activeSlide.alt}
-                        fill
-                        sizes="100vw"
-                        className="object-cover object-center"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="rounded-[1.55rem] border border-white/10 bg-black/12 px-5 py-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="inline-flex rounded-full border border-white/14 bg-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-primary-foreground/78">
-                          {activeSlide.kicker}
-                        </p>
-                        <p className="mt-4 text-[10px] uppercase tracking-[0.24em] text-primary-foreground/45">
-                          {activeSlide.metric}
-                        </p>
-                      </div>
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/14 bg-white/8 text-[10px] font-medium uppercase tracking-[0.22em] text-primary-foreground/72">
-                        {String(activeIndex + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-4 font-serif text-[1.75rem] leading-tight text-primary-foreground">
-                      {activeSlide.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-[1.8] text-primary-foreground/65">
-                      {activeSlide.body}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="mt-4 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  {heroSlides.map((slide, index) => (
-                    <button
-                      key={slide.title}
-                      type="button"
-                      onClick={() => goToSlide(index)}
-                      aria-label={`Show slide ${index + 1}`}
-                      className="group inline-flex items-center"
-                    >
-                      <span
-                        className={`block h-2 rounded-full transition-all duration-300 ${
-                          index === activeIndex
-                            ? "w-8 bg-[hsl(var(--peach))]"
-                            : "w-2 bg-white/30 group-hover:bg-white/50"
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => goToSlide(activeIndex - 1)}
-                    aria-label="Previous slide"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/8 text-primary-foreground/78 transition-colors hover:bg-white/14"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => goToSlide(activeIndex + 1)}
-                    aria-label="Next slide"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/14 bg-white/8 text-primary-foreground/78 transition-colors hover:bg-white/14"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden lg:block">
+          {/* <div className="hidden lg:block">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${activeSlide.image}-desktop`}
@@ -367,7 +240,7 @@ export function Hero() {
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
