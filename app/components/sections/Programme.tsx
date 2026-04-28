@@ -32,6 +32,15 @@ const objectives = [
   "Build a measurable, durable high-performance culture",
 ];
 
+const cards = [
+  { val: "4 months", label: "Guided journey", pos: "top-2 right-0" },
+  { val: "10", label: "Live sessions", pos: "bottom-6 left-0" },
+  {
+    val: "1",
+    label: "Transformative Retreat",
+    pos: "top-20 -translate-y-1/2 -left-4",
+  },
+];
 export function Programme() {
   return (
     <section id="programme" className="bg-card py-24 md:py-36">
@@ -50,7 +59,7 @@ export function Programme() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-4">
               Four months.{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
-                One transformation.
+                Transformation unlocked.
               </em>
             </h2>
             <p className="text-sm uppercase tracking-[0.2em] text-primary/55 font-medium mb-12">
@@ -100,6 +109,79 @@ export function Programme() {
             </div>
           </motion.div>
 
+          <div>
+              <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2 }}
+                      className=" relative h-[440px] md:h-[520px] w-full"
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div
+                          className="rounded-full bg-[hsl(var(--sky)/0.4)]"
+                          style={{
+                            width: 360,
+                            height: 360,
+                            animation: "breathe 6s ease-in-out infinite",
+                          }}
+                        />
+                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div
+                          className="rounded-full border border-primary/15"
+                          style={{
+                            width: 440,
+                            height: 440,
+                            animation: "ringPulse 6s ease-in-out 1s infinite",
+                          }}
+                        />
+                      </div>
+          
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                        <p className="font-serif text-7xl md:text-8xl text-primary leading-none font-light">
+                          TM
+                        </p>
+                        <p className="mt-3 text-[11px] uppercase tracking-[0.3em] text-[hsl(var(--peach-deep))] font-medium">
+                          Effortless Transcending
+                        </p>
+                      </div>
+          
+                      {cards.map((card, index) => (
+                        <motion.div
+                          key={card.label}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.4 + index * 0.15 }}
+                          className={`absolute ${card.pos} bg-background border border-border/70 px-5 py-4 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.06)] min-w-[160px] z-20`}
+                          style={{
+                            animation: `float${(index % 2) + 1} ${5 + index}s ease-in-out ${index}s infinite`,
+                          }}
+                        >
+                          <p className=" text-2xl text-primary font-light leading-none">
+                            {card.val}
+                          </p>
+                          <p className="text-[11px] text-primary/60 mt-1.5">
+                            {card.label}
+                          </p>
+                        </motion.div>
+                      ))}
+          
+                      <style>{`
+                        @keyframes breathe {
+                          0%,100% { transform: scale(1); opacity: 0.7; }
+                          50% { transform: scale(1.06); opacity: 1; }
+                        }
+                        @keyframes ringPulse {
+                          0%,100% { transform: scale(1); opacity: 0.4; }
+                          50% { transform: scale(1.1); opacity: 0.85; }
+                        }
+                        @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+                        @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+                      `}</style>
+                    </motion.div>
+        
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -113,19 +195,14 @@ export function Programme() {
               and their teams.
             </h3>
             <p className="text-primary/65 leading-[1.85] mb-4 font-light">
-              The Maharishi Center for Leadership delivers this programme - in
-              partnership with CII - for senior executives, founders,
-              high-potential managers, and entire C-suites who demand
-              evidence-based, practical tools that produce measurable results.
+              The Maharishi Center for Leadership delivers this programme for
+              senior executives, founders, high-potential managers, and entire
+              C-suites who demand evidence-based, practical tools that produce
+              measurable results.
             </p>
-            <p className="text-primary/65 leading-[1.85] mb-8 font-light">
-              Front-loaded for momentum, spaced for stability, and anchored by
-              a deep-rest retreat. Each session builds on the last - from
-              foundational technique to advanced applications in leadership
-              development and organisational culture.
-            </p>
+            
 
-            <div className="space-y-2.5">
+            <div className="space-y-2.5 text-primary/65">
               {objectives.map((objective, index) => (
                 <motion.div
                   key={objective}
@@ -133,16 +210,17 @@ export function Programme() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.05 * index }}
-                  className="flex items-center gap-5 px-5 py-4 bg-background hover:bg-[hsl(var(--sky)/0.5)] transition-colors rounded-md"
+                  className="flex items-center  px-5   transition-colors rounded-md"
                 >
                   <span className="font-serif text-2xl text-[hsl(var(--peach-deep))] font-light w-7 shrink-0">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-[14px] text-primary">{objective}</span>
+                  <span className="text-[14px] ">{objective}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
+            </div>
         </div>
       </div>
     </section>

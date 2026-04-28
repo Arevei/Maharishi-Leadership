@@ -2,134 +2,133 @@
 
 import { motion } from "framer-motion";
 
-const quickFacts = [
-  { value: "4 months", label: "Guided journey" },
-  { value: "10", label: "Live sessions" },
-  { value: "1", label: "Immersive retreat" },
-  { value: "1:1", label: "Teacher support" },
-];
-
-const learningArc = [
+const pillars = [
   {
     step: "01",
-    title: "Establish the practice",
-    desc: "Personal instruction, validation, and the mechanics of effortless transcending so the technique is set correctly from day one.",
-    tags: ["Personal instruction", "Daily rhythm", "Correct practice"],
+    title: "The TM Technique & Daily Practice",
+    subtitle: "Establish the practice correctly from day one.",
+    points: [
+      "Learn the authentic technique from a certified teacher",
+      "Establish a sustainable daily routine",
+      "Natural, effortless - no concentration required",
+      "20 minutes twice daily - practised anywhere",
+    ],
   },
   {
     step: "02",
-    title: "Stabilise under pressure",
-    desc: "Use deep rest to increase resilience, cognitive bandwidth, recovery, and consistency in high-stakes environments.",
-    tags: ["Resilience", "Cognitive capacity", "1:1 refinement"],
+    title: "Neuroscience of Peak Performance",
+    subtitle: "Understand the physiology behind stronger leadership.",
+    points: [
+      "Why brain coherence is the foundation of great leadership",
+      "How TM develops frontal brain integration",
+      "Access the hidden reserves of the brain",
+      "How benefits compound over months and years",
+    ],
   },
   {
     step: "03",
-    title: "Lead from centeredness",
-    desc: "Translate TM into EQ, sharper judgement, stronger presence, and the higher-order leadership capacities that scale across teams.",
-    tags: ["Leadership application", "EQ", "Higher states"],
+    title: "Leadership & Well-being Integration",
+    subtitle: "Translate the practice into performance, resilience, and health.",
+    points: [
+      "Higher states of development and their link to performance",
+      "Emotional intelligence, resilience, and leadership presence",
+      "How TM reduces stress at the physiological level",
+      "Long-term health, vitality, and cardiovascular protection",
+    ],
   },
+];
+
+const factStrip = [
+  { value: "4 months", label: "Guided executive journey" },
+  { value: "10 sessions", label: "Live learning progression" },
+  { value: "1 retreat", label: "Deep-rest capstone day" },
 ];
 
 export function Curriculum() {
   return (
-    <section id="curriculum" className="bg-background py-24 md:py-36">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+    <section
+      id="curriculum"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,hsl(var(--sky)/0.22)_0%,hsl(var(--background))_100%)] py-24 md:py-36"
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-60"
+        style={{
+          background:
+            "radial-gradient(circle at top right, hsl(var(--cream) / 0.75), transparent 28%), linear-gradient(180deg, transparent 0%, hsl(var(--background) / 0.2) 100%)",
+        }}
+      />
+
+      <div className="container relative mx-auto px-6 md:px-12">
+        <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_22rem]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="rounded-[2rem] border border-border bg-card p-8 md:p-10 shadow-[0_24px_70px_-36px_rgba(6,32,63,0.28)]"
+            className="max-w-4xl"
           >
-            <p className="flex items-center gap-3 text-[hsl(var(--peach-deep))] uppercase text-[11px] tracking-[0.3em] font-medium mb-6">
-              <span className="w-7 h-px bg-[hsl(var(--peach-deep))]" /> Curriculum
-              Overview
+            <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.32em] text-[hsl(var(--peach-deep))]">
+              <span className="h-px w-8 bg-[hsl(var(--peach-deep))]" /> The
+              Curriculum
             </p>
-            <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-6">
-              The learning arc,{" "}
+            <h2 className="font-serif text-4xl font-light leading-[1.08] text-primary md:text-6xl">
+              What you will learn{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
-                at a glance.
+                & master:
               </em>
             </h2>
-            <p className="text-base sm:text-lg text-primary/60 leading-[1.85] font-light max-w-2xl">
-              We have intentionally kept this section high-level. It shows the
-              shape of the journey without turning the full teaching into a
-              public handout.
+            <p className="mt-6 max-w-3xl text-base font-light leading-[1.9] text-primary/62 md:text-lg">
+              The curriculum is designed to move from authentic technique, to
+              measurable brain and physiology change, to the higher-order
+              qualities of leadership presence, resilience, and sustainable
+              performance.
             </p>
-
-            <div className="grid grid-cols-2 gap-3 mt-8">
-              {quickFacts.map((fact) => (
-                <div
-                  key={fact.label}
-                  className="rounded-[1.35rem] border border-border bg-background px-4 py-4"
-                >
-                  <p className="font-serif text-2xl text-primary leading-none">
-                    {fact.value}
-                  </p>
-                  <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-primary/55">
-                    {fact.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="lg:pt-8"
-          >
-            <p className="text-[11px] uppercase tracking-[0.24em] text-[hsl(var(--peach-deep))] font-medium mb-5">
-              Why this format works
-            </p>
-            <div className="space-y-5 text-primary/65 leading-[1.9] font-light">
-              <p>
-                Leaders get a clear sense of the progression: first the
-                technique is established, then stabilised under real-world
-                pressure, and finally applied to higher-order leadership.
-              </p>
-              <p>
-                It also protects the integrity of the programme. You can speak
-                confidently about the experience without publishing every
-                session detail in advance.
-              </p>
-            </div>
-          </motion.div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3 mt-12">
-          {learningArc.map((item, index) => (
-            <motion.div
-              key={item.step}
-              initial={{ opacity: 0, y: 20 }}
+      
+
+        <div className="mt-12 grid gap-6 xl:grid-cols-3">
+          {pillars.map((pillar, index) => (
+            <motion.article
+              key={pillar.step}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: index * 0.08 }}
-              className="rounded-[1.75rem] border border-border bg-card p-6 md:p-7"
+              transition={{ duration: 0.7, delay: index * 0.08 }}
+              className="relative overflow-hidden rounded-[1.9rem] border border-[hsl(var(--sky)/0.8)] bg-[linear-gradient(180deg,white_0%,hsl(var(--background))_100%)] p-7 shadow-[0_26px_60px_-40px_rgba(7,29,64,0.24)] md:p-8"
             >
-              <p className="font-serif text-3xl text-[hsl(var(--peach-deep))] leading-none">
-                {item.step}
-              </p>
-              <h3 className="mt-5 text-xl text-primary font-medium">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-[14px] text-primary/60 leading-[1.8]">
-                {item.desc}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] bg-[hsl(var(--sky)/0.6)] text-primary px-3 py-1 rounded-full font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="absolute right-5 top-4 font-serif text-6xl leading-none text-[hsl(var(--sky)/0.5)] md:text-7xl">
+                {pillar.step}
               </div>
-            </motion.div>
+
+              <div className="relative z-10 max-w-[18rem]">
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--peach-deep))]">
+                  Pillar {pillar.step}
+                </p>
+                <h3 className="mt-5 text-[1.9rem] font-medium leading-[1.18] text-primary md:text-[2rem]">
+                  {pillar.title}
+                </h3>
+                <p className="mt-4 text-[14px] leading-[1.75] text-primary/60">
+                  {pillar.subtitle}
+                </p>
+              </div>
+
+              <ul className="relative z-10 mt-7 space-y-4">
+                {pillar.points.map((point) => (
+                  <li key={point} className="flex gap-4">
+                    <span className="mt-1 shrink-0 text-[hsl(var(--peach-deep))]">
+                      →
+                    </span>
+                    <span className="text-[14px] leading-[1.75] text-primary/76">
+                      {point}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
           ))}
         </div>
       </div>

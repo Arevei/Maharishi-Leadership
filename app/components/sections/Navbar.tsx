@@ -83,7 +83,7 @@ export function Navbar() {
             }`}
             data-testid="nav-cta"
           >
-            Free Intro Talk
+            Consult Now
           </Link>
         </nav>
 
@@ -115,7 +115,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="mt-8 text-center px-8 py-4 rounded-full bg-primary text-primary-foreground text-sm uppercase tracking-[0.2em]"
           >
-            Free Intro Talk
+            Consult Now
           </Link>
         </div>
       )}

@@ -1,4 +1,5 @@
-export const contactEmail = "Debashish.Sarkar@tm.org";
+export const contactName = "Chandan Mehta";
+export const contactEmail = "chandan.mehta@tm.org";
 
 export type ContactInquiryTypeKey =
   | "general"

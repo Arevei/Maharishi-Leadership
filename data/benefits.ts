@@ -51,8 +51,8 @@ export type BenefitType = {
 };
 
 export const benefitsProofStats = [
-  { value: "600+", label: "peer-reviewed studies" },
-  { value: "50+ years", label: "continuous research" },
+  { value: "480+", label: "peer-reviewed studies" },
+  { value: "50 years", label: "continuous research" },
   { value: "48%", label: "lower cardiac risk in long-term follow-up" },
   { value: "AHA", label: "recognition in cardiovascular guidance" },
 ];

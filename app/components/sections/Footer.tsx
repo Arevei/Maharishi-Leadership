@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contactEmail } from "@/data/contact";
+import { contactEmail, contactName } from "@/data/contact";
 import { footerColumns } from "@/data/navigation";
 
 export function Footer() {
@@ -27,7 +27,7 @@ export function Footer() {
             <p className="text-sm text-primary-foreground/45 leading-[1.8] max-w-sm">
               Maharishi Center for Leadership - A Brain-Based Approach to Peak
               Performance and Resilience. A four-month executive development
-              programme in partnership with CII, backed by 600+ peer-reviewed
+              programme in partnership with CII, backed by 480+ peer-reviewed
               studies over five decades.
             </p>
             <div className="mt-8">
@@ -35,7 +35,7 @@ export function Footer() {
                 Direct Contact
               </p>
               <p className="font-serif text-2xl text-primary-foreground font-light">
-                Debashish Sarkar
+                {contactName}
               </p>
               <a
                 href={`mailto:${contactEmail}`}

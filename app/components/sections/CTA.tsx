@@ -26,10 +26,8 @@ export function CTA() {
           transition={{ duration: 1 }}
           className="font-serif text-4xl md:text-6xl lg:text-[4.75rem] leading-[1.08] font-light mb-8"
         >
-          The most important upgrade
-          <br />
-          available to a leader{" "}
-          <em className="italic text-[hsl(var(--peach))]">begins here.</em>
+          Start with{" "}
+          <em className="italic text-[hsl(var(--peach))]">a conversation.</em>
         </motion.h2>
 
         <motion.p
@@ -39,9 +37,8 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.15 }}
           className="text-lg text-primary-foreground/60 max-w-2xl mx-auto leading-[1.85] font-light mb-14"
         >
-          A 30-minute introductory talk is the simplest way to understand
-          whether the programme is right for you, your team, or your
-          organisation. No obligation. No follow-up unless you ask for one.
+          A 30-minute introductory talk is the simplest way to understand how
+          the programme is right for you, your team, or your organisation.
         </motion.p>
 
         <motion.div
