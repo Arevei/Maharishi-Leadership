@@ -99,7 +99,7 @@ const data: Record<
       },
     ],
     chart: {
-      title: "Anxiety Reduction — effect size vs other techniques",
+      title: "Anxiety reduction effect size",
       source: "Meta-analysis of 16 RCTs, Orme-Johnson & Barnes, 2013.",
       bars: [
         { name: "TM", value: 90, label: "0.62", tone: "primary" },

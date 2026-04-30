@@ -107,11 +107,11 @@ export function Testimonials() {
           <div className="mb-5 text-[11px] uppercase tracking-[0.28em] text-primary-foreground/45">
             Leaders and teams from institutions such as
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="flex gap-4 ">
             {companies.map((company) => (
               <div
                 key={company.name}
-                className="flex min-h-[5.25rem] items-center justify-center rounded-[1.4rem] border border-primary-foreground/10 bg-white px-5 py-4 shadow-[0_24px_44px_-34px_rgba(0,0,0,0.45)]"
+                className="mb-8 flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)]"
               >
                 <Image
                   src={company.logo}
