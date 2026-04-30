@@ -9,37 +9,37 @@ import { getContactHref } from "@/data/contact";
 
 const heroSlides = [
   {
-    image: "/images/hero.jpg",
+    image: "/images/tm-1.jpg",
     alt: "Meditation silhouette against a warm horizon",
     kicker: "Deep Rest",
-    title: "Calm the nervous system behind leadership.",
-    body: "Train the neurological foundation of clarity, resilience, and cleaner decision-making under pressure.",
+    title: "World-Class Performance and Resilience Is Built on World-Class Brain Functioning. Lead at a Higher Level.",
+    body: "A 4-Month Executive Development Programme backed by 480+ Peer-Reviewed Studies that provides the neuro-physiological foundation for clarity, creativity, resilience, and peak performance.",
     metric: "480+ peer-reviewed studies",
   },
-  {
-    image: "/images/tm-1.jpg",
-    alt: "A meditator sitting quietly at sunrise",
-    kicker: "Stress Recovery",
-    title: "Recovery that compounds into performance.",
-    body: "Create the kind of physiological rest that restores energy, emotional steadiness, and strategic bandwidth.",
-    metric: "20 minutes, twice daily",
-  },
-  {
-    image: "/images/tm-2.png",
-    alt: "A practitioner meditating at sunset",
-    kicker: "Daily Practice",
-    title: "Simple enough to sustain. Powerful enough to matter.",
-    body: "A personal technique taught one-to-one and designed to integrate naturally into a demanding executive schedule.",
-    metric: "Four-month guided journey",
-  },
-  {
-    image: "/images/executive.png",
-    alt: "An executive working in a quiet office",
-    kicker: "Leadership Application",
-    title: "Take it from practice into the boardroom.",
-    body: "Bring more presence to meetings, sharper judgement to decisions, and steadier energy to every leadership moment.",
-    metric: "Built for founders and C-suites",
-  },
+  // {
+  //   image: "/images/tm-1.jpg",
+  //   alt: "A meditator sitting quietly at sunrise",
+  //   kicker: "Stress Recovery",
+  //   title: "Recovery that compounds into performance.",
+  //   body: "Create the kind of physiological rest that restores energy, emotional steadiness, and strategic bandwidth.",
+  //   metric: "20 minutes, twice daily",
+  // },
+  // {
+  //   image: "/images/tm-2.png",
+  //   alt: "A practitioner meditating at sunset",
+  //   kicker: "Daily Practice",
+  //   title: "Simple enough to sustain. Powerful enough to matter.",
+  //   body: "A personal technique taught one-to-one and designed to integrate naturally into a demanding executive schedule.",
+  //   metric: "Four-month guided journey",
+  // },
+  // {
+  //   image: "/images/executive.png",
+  //   alt: "An executive working in a quiet office",
+  //   kicker: "Leadership Application",
+  //   title: "Take it from practice into the boardroom.",
+  //   body: "Bring more presence to meetings, sharper judgement to decisions, and steadier energy to every leadership moment.",
+  //   metric: "Built for founders and C-suites",
+  // },
 ];
 
 export function Hero() {
@@ -217,7 +217,7 @@ export function Hero() {
             </motion.p>
           </div>
 
-          {/* <div className="hidden lg:block">
+          <div className="hidden lg:block mb-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${activeSlide.image}-desktop`}
@@ -225,22 +225,20 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -24, scale: 0.985 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="relative ml-auto max-w-[46rem] rounded-[2.5rem] bg-[linear-gradient(180deg,hsl(var(--sky)/0.34)_0%,hsl(var(--sky)/0.12)_100%)] p-5 shadow-[0_34px_100px_-62px_rgba(4,24,57,0.5)]"
+                className="relative ml-auto  max-w-[46rem] rounded-[2.5rem] "
               >
-                <div className="rounded-[2rem] border border-white/24 bg-white/8 p-5 backdrop-blur">
-                  <div className="relative aspect-[4/3.3] overflow-hidden rounded-[1.7rem] bg-[hsl(var(--sky)/0.18)]">
+                   <div className="relative  aspect-[4/3.3] overflow-hidden rounded-[1.7rem] bg-[hsl(var(--sky)/0.18)]">
                     <Image
                       src={activeSlide.image}
                       alt={activeSlide.alt}
                       fill
                       sizes="(min-width: 1024px) 46rem, 100vw"
-                      className="object-cover"
+                      className="object-cover my-auto"
                     />
                   </div>
-                </div>
               </motion.div>
             </AnimatePresence>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

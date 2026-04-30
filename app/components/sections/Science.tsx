@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Link2 } from "lucide-react";
 import Image from "next/image";
-
+import Link from "next/link";
 const stats = [
   { num: "480+", label: "Peer-reviewed studies on TM" },
   { num: "250+", label: "Universities and medical institutions" },
@@ -126,26 +127,27 @@ export function Science() {
             className="space-y-8 border border-primary-foreground/10 bg-primary-foreground/[0.03] p-10 md:p-16"
           >
             <div>
-              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--peach))]">
-                Travis &amp; Shear, 2010 - Consciousness and Cognition
-              </p>
+              
               <h3 className="mb-5 font-serif text-3xl font-light leading-tight md:text-4xl">
-                Peak performance is correlated with{" "}
+                Peak Performance Is Correlated with {" "}
                 <em className="italic text-[hsl(var(--peach))]">
-                  integrated brain functioning.
+                  Integrated Brain Functioning.
                 </em>
               </h3>
-              <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
-                EEG research shows TM uniquely produces high-amplitude alpha
-                coherence across the frontal cortex, the neurophysiological
-                signature of integrated, high-functioning mental performance.
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--peach))]">
+                Whole-brain coherence — Travis & Shear, 2010 · Consciousness and Cognition
               </p>
+             
               <p className="text-[15px] font-light leading-[1.85] text-primary-foreground/55">
                 &ldquo;Frontal brain coherence is correlated directly with
                 creativity, moral reasoning, practical intelligence, and
                 emotional resilience.&rdquo; This is the neural foundation of
                 great leadership.
               </p>
+               <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
+                EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex — the neurophysiological signature of integrated, high-functioning mental performance.
+              </p>
+              <p  className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">For a full overview of the research: <Link href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"><Link2/></Link></p>
             </div>
 
             <div className="space-y-4">

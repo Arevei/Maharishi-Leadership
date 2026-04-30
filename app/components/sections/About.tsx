@@ -65,8 +65,8 @@ export function About() {
 
           </motion.div>
         </div>
-            <div className="mt-12 rounded-[2rem] border border-border bg-background/80 p-6 shadow-[0_22px_48px_-36px_rgba(7,29,64,0.22)] md:p-8">
-              <div className="flex flex-col gap-5 border-b border-border pb-6 md:flex-row md:items-end md:justify-between">
+            <div className="mt-12 rounded-[2rem]  bg-background/80 p-6  md:p-8">
+              <div className="flex flex-col gap-5  pb-3 md:flex-row md:items-end md:justify-between">
                 <div className="max-w-2xl">
                   <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-[hsl(var(--peach-deep))]">
                     The Transformation Achieved by TM
@@ -76,7 +76,7 @@ export function About() {
 
                 <Link
                   href="/#curriculum"
-                  className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-6 py-3 text-sm font-medium uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-4 py-2 text-sm font-medium uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   View Curriculum
                 </Link>
@@ -87,32 +87,47 @@ export function About() {
                   {
                     index: "01",
                     title: "Clarity in Decision-Making",
-                    desc: "The technique works because it is effortless. As internal noise drops, leaders think with more range, calm, and perspective.",
+                    desc: "The technique works because it is effortless. ",
+                    imag:"/decision-making.avif"
                   },
                   {
                     index: "02",
                     title: "Emotional Intelligence",
-                    desc: "Stay composed when stakes are high. TM supports a steadier nervous system, which strengthens presence and emotional range.",
+                    desc: "Stay composed when stakes are high.",
+                    imag:"/emotional-intelligence.jpg"
                   },
                   {
                     index: "03",
                     title: "Sustained Focus",
-                    desc: "Execute with consistency, not just intent. Attention becomes more reliable, less reactive, and easier to hold over time.",
+                    desc: "Execute with consistency, not just intent.",
+                    imag:"/focus.avif"
                   },
                 ].map((point) => (
+              
                   <div
                     key={point.title}
-                    className="rounded-[1.45rem] border border-border bg-card px-5 py-5 shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)]"
+                    className="rounded-[1.45rem] flex  bg-card  shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)]"
                   >
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-[hsl(var(--peach-deep))]">
+                    <div className="w-[30%]  px-5">
+                      <Image
+                                        src={`/images${point.imag}`}
+                                        alt={point.imag}
+                                        width={320}
+                                        height={160}
+                                        className=" w-full h-full my-auto object-cover"
+                                      />
+                    </div>
+                    <div className="w-[70%] my-auto">
+                   
+                    <h4 className=" text-lg font-medium leading-snug text-primary">
+                       <span className=" uppercase  text-[hsl(var(--peach-deep))]">
                       {point.index}
-                    </p>
-                    <h4 className="mt-3 text-lg font-medium leading-snug text-primary">
-                      {point.title}
+                    </span> - {point.title}
                     </h4>
                     <p className="mt-3 text-[14px] leading-[1.8] text-primary/60">
                       {point.desc}
                     </p>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const quotes = [
@@ -7,28 +8,34 @@ const quotes = [
     text: "TM has given me greater creativity, centredness, and the ability to put things in perspective. It has been the single biggest influence on my life.",
     name: "Ray Dalio",
     role: "Founder & Co-CIO, Bridgewater Associates",
+    logo: "/logos/Bridgewater_Associates.jpg",
+    logoAlt: "Bridgewater Associates logo",
   },
   {
     text: "My creativity improved. I can solve problems faster and more easily. I can focus for longer periods of time - and I am happier.",
     name: "Rahul Vohra",
     role: "Founder & CEO, Superhuman",
+    logo: "/logos/Superhuman.png",
+    logoAlt: "Superhuman logo",
   },
   {
     text: "It has given a boost to our overall creativity and performance. Health, well-being, clarity of mind, happiness, and calm have all improved. Significant benefits to myself and our team.",
     name: "Rajan Navani",
     role: "Chairman & MD, JetSynthesys Pvt. Ltd.",
+    logo: "/logos/JetSynthesys.jpg",
+    logoAlt: "JetSynthesys logo",
   },
 ];
 
 const companies = [
-  "Bridgewater",
-  "Superhuman",
-  "JetSynthesys",
-  "Google",
-  "IBM",
-  "Tata",
-  "Citadel",
-  "Toyota",
+  { name: "Bridgewater Associates", logo: "/logos/Bridgewater_Associates.jpg" },
+  { name: "Superhuman", logo: "/logos/Superhuman.png" },
+  { name: "JetSynthesys", logo: "/logos/JetSynthesys.jpg" },
+  { name: "Google", logo: "/logos/google.png" },
+  { name: "IBM", logo: "/logos/ibm.jpg" },
+  { name: "Citadel", logo: "/logos/citadel.webp" },
+  { name: "Toyota", logo: "/logos/Toyota-logo.png" },
+  { name: "Tata Tea", logo: "/logos/tatatea.jpg" },
 ];
 
 export function Testimonials() {
@@ -65,6 +72,15 @@ export function Testimonials() {
               transition={{ duration: 0.8, delay: index * 0.15 }}
               className="bg-primary p-10 hover:bg-primary-foreground/[0.04] transition-colors"
             >
+              <div className="mb-8 flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)]">
+                <Image
+                  src={quote.logo}
+                  alt={quote.logoAlt}
+                  width={180}
+                  height={90}
+                  className="h-auto max-h-8 w-auto max-w-full object-contain"
+                />
+              </div>
               <div className="font-serif text-6xl text-[hsl(var(--peach))] leading-none mb-2">
                 &ldquo;
               </div>
@@ -86,16 +102,27 @@ export function Testimonials() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="mt-20 border-t border-primary-foreground/10 flex flex-wrap"
+          className="mt-20 border-t border-primary-foreground/10 pt-8"
         >
-          {companies.map((company) => (
-            <div
-              key={company}
-              className="px-6 md:px-9 py-6 text-[13px] font-medium text-primary-foreground/35 hover:text-primary-foreground/85 transition-colors border-r border-primary-foreground/10 last:border-r-0"
-            >
-              {company}
-            </div>
-          ))}
+          <div className="mb-5 text-[11px] uppercase tracking-[0.28em] text-primary-foreground/45">
+            Leaders and teams from institutions such as
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {companies.map((company) => (
+              <div
+                key={company.name}
+                className="flex min-h-[5.25rem] items-center justify-center rounded-[1.4rem] border border-primary-foreground/10 bg-white px-5 py-4 shadow-[0_24px_44px_-34px_rgba(0,0,0,0.45)]"
+              >
+                <Image
+                  src={company.logo}
+                  alt={company.name}
+                  width={200}
+                  height={100}
+                  className="h-auto max-h-10 w-auto max-w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
