@@ -11,10 +11,12 @@ import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
+  const useLightHeroTone = isHomePage && !isScrolled && !open;
 
   return (
     <motion.header
@@ -35,7 +37,7 @@ export function Navbar() {
           className={`flex items-center gap-3 group transition-colors ${
             open
               ? "text-primary-foreground"
-              : isScrolled
+              : isScrolled || useLightHeroTone
                 ? "text-primary"
                 : "text-primary-foreground"
           }`}
@@ -53,7 +55,7 @@ export function Navbar() {
               className={`not-italic ${
                 open
                   ? "text-primary-foreground/70"
-                  : isScrolled
+                  : isScrolled || useLightHeroTone
                     ? "text-primary/60"
                     : "text-primary-foreground/70"
               }`}
@@ -71,7 +73,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-[13px] tracking-wide transition-colors ${
-                  isScrolled
+                  isScrolled || useLightHeroTone
                     ? isActive
                       ? "text-primary"
                       : "text-primary/70 hover:text-primary"
@@ -87,7 +89,7 @@ export function Navbar() {
           <Link
             href={getContactHref("intro-talk")}
             className={`ml-2 px-6 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
-              isScrolled
+              isScrolled || useLightHeroTone
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
                 : "bg-[hsl(var(--cream))] text-primary hover:bg-[hsl(var(--sky))]"
             }`}
@@ -101,7 +103,7 @@ export function Navbar() {
           className={`lg:hidden p-2 z-50 ${
             open
               ? "text-primary-foreground"
-              : isScrolled
+              : isScrolled || useLightHeroTone
                 ? "text-primary"
                 : "text-primary-foreground"
           }`}
