@@ -3,17 +3,17 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "./home-hero-slider.css";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 type SliderItem = {
   id: number;
-  preTitle: string;
   title: string;
   subtitle: string;
   reference?: string;
@@ -21,67 +21,73 @@ type SliderItem = {
   buttonLink: string;
   image: string;
   bgColor: string;
+  navTitle: string;
+  navSubTitle: string;
 };
 
 const sliderData: SliderItem[] = [
   {
     id: 1,
-    preTitle: "Stress & Anxiety",
-    title: "Calm Under Pressure",
+    title: "Reduced Stress & Anxiety",
     subtitle:
-      "A practical way to reduce inner overload, settle the nervous system, and respond with clarity instead of reacting from stress.",
+      "Experience a calmer mind and a more settled nervous system. Transcendental Meditation helps reduce daily stress, ease mental overload, and support clear, steady responses under pressure.",
     buttonText: "Discover Now",
     buttonLink: "/programme",
     image: "/images/tm-hero-1.png",
     bgColor: "#f4e8b4",
+    navTitle: "Reduced Stress",
+    navSubTitle: "& Anxiety",
   },
   {
     id: 2,
-    preTitle: "Clarity Under Pressure",
-    title: "Peak Mental Performance",
+    title: "Increased Mental Clarity & Creativity",
     subtitle:
-      "Develop the same integrated brain functioning seen in Olympic medallists and top executives, so your best thinking shows up exactly when the stakes are highest.",
+      "Improve focus, unlock fresh thinking, and access better decisions when it matters most. TM supports integrated brain functioning, helping your best ideas surface with greater ease.",
     reference:
       "International Journal of Psychophysiology, 2009. https://doi.org/10.1016/j.ijpsycho.2008.09.007",
     buttonText: "Explore Now",
     buttonLink: "/science",
     image: "/images/tm-hero-2.png",
     bgColor: "#eef3d8",
+    navTitle: "Mental Clarity",
+    navSubTitle: "& Creativity",
   },
   {
     id: 3,
-    preTitle: "Better Health",
-    title: "Restful Recovery",
+    title: "Better Sleep & Health",
     subtitle:
-      "Support deeper rest, steadier energy, and a healthier stress response so your body can recover while your mind becomes more settled and alert.",
+      "Support deeper rest, steadier energy, and long-term well-being. By reducing stress at its root, TM helps the body recover naturally while keeping the mind alert and refreshed.",
     buttonText: "Learn More",
     buttonLink: "/benefits",
     image: "/images/tm-hero-3.png",
     bgColor: "#e4f0e8",
+    navTitle: "Better Sleep",
+    navSubTitle: "& Health",
   },
   {
     id: 4,
-    preTitle: "Heightened Emotional Intelligence",
-    title: "Lead With Presence",
+    title: "Stronger Relationships",
     subtitle:
-      "Read the room, hold your center, and lead the people in front of you — not the pressure on your shoulders.",
+      "Build emotional balance, patience, and presence in the way you connect with others. TM helps you respond with calm awareness, making relationships feel more thoughtful and less reactive.",
     reference:
       "Permanente Journal, 2018. https://doi.org/10.7812/TPP/17-172",
     buttonText: "Consult Now",
     buttonLink: "/consultation",
     image: "/images/tm-hero-4.png",
     bgColor: "#f1e7c8",
+    navTitle: "Stronger",
+    navSubTitle: "Relationships",
   },
 ];
-function Shape({ img, num } :{ img : string, num : string}) {
-  return (
-    <Image className={`tp-slider-shape-${num}`} src={img} alt="slider-shape" height={100} width={100} priority />
-  );
-}
 
 export default function HomeHeroSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const goToSlide = (index: number) => {
+    swiperRef.current?.slideTo(index);
+    setActiveIndex(index);
+  };
 
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f7d957_0%,#fff4c6_42%,#9fdcff_100%)]">
@@ -90,7 +96,7 @@ export default function HomeHeroSlider() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,40,79,0.14)_0%,rgba(22,40,79,0)_18%,rgba(255,255,255,0.08)_100%)]" />
       </div>
       <Swiper
-        modules={[EffectFade]}
+        modules={[EffectFade, Autoplay]}
         slidesPerView={1}
         spaceBetween={0}
         loop={false}
@@ -99,6 +105,10 @@ export default function HomeHeroSlider() {
           crossFade: true,
         }}
         speed={900}
+        autoplay={{
+          delay: 4500,
+          disableOnInteraction: false,
+        }}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
@@ -108,33 +118,23 @@ export default function HomeHeroSlider() {
         className="tm-hero-swiper"
       >
         {sliderData.map((item) => (
-          <SwiperSlide key={item.id} className={`tp-slider-item tp-slider-height d-flex align-items-center 
-              }`}
-              style={{ backgroundColor:  "#E3EDF6" }}>
+          <SwiperSlide key={item.id}>
             <div
               className="tm-hero-slide"
               // style={{ backgroundColor: item.bgColor }}
             >
-              {/* Background circles */}
               <div className="tm-hero-circle tm-hero-circle-one" />
               <div className="tm-hero-circle tm-hero-circle-two" />
 
-              {/* <div className="tp-slider-shape">
-                              <Shape img={item.image} num="1" />
-                              <Shape img={item.image} num="2" />
-                              <Shape img={item.image} num="3" />
-                              <Shape img={item.image} num="4" />
-                            </div> */}
-
-              {/* Content */}
               <div className="tm-hero-container">
                 <div className="tm-hero-content">
-                  <p className="tm-hero-pretitle">{item.preTitle}</p>
+                  <p className="tm-hero-pretitle uppercase">Maharishi Center for Leadership
+              <span className="block pt-2 text-primary-foreground/58">
+                In Partnership with CII
+              </span></p>
 
                   <h1 className="tm-hero-title">
-                    {item.title.split(" ").map((word) => (
-                      <span key={word}>{word}</span>
-                    ))}
+                    {item.title}
                   </h1>
 
                   <p className="tm-hero-subtitle">{item.subtitle}</p>
@@ -150,7 +150,6 @@ export default function HomeHeroSlider() {
                 </div>
               </div>
 
-              {/* Image must stay inside each slide */}
               <div className="tm-hero-image">
                 <Image
                   src={item.image}
@@ -166,37 +165,56 @@ export default function HomeHeroSlider() {
         ))}
       </Swiper>
 
-      {/* Arrows */}
-      <div className="tm-hero-arrows">
+      {/* Arrow buttons */}
+      <div className="tm-hero-arrows ">
         <button
+        className="rounded-full bg-white/80"
           type="button"
           aria-label="Previous slide"
           onClick={() => swiperRef.current?.slidePrev()}
         >
-          ←
+          <ArrowLeft/>
         </button>
 
         <button
+        className="rounded-full bg-white/80"
           type="button"
           aria-label="Next slide"
           onClick={() => swiperRef.current?.slideNext()}
         >
-          →
+          <ArrowRight/>
         </button>
       </div>
 
-      {/* Dots */}
-      <div className="tm-hero-dots">
-        {sliderData.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Go to slide ${index + 1}`}
-            onClick={() => swiperRef.current?.slideTo(index)}
-            className={activeIndex === index ? "active" : ""}
-          />
-        ))}
-      </div>
+      {/* Replaced dots with auto-scroll title navigation */}
+      {/* <div className="tm-hero-nav">
+        <div
+          className="tm-hero-nav-track"
+          style={{
+            transform: `translateY(-${activeIndex * 74}px)`,
+          }}
+        >
+          {sliderData.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => goToSlide(index)}
+              className={`tm-hero-nav-item ${
+                activeIndex === index ? "active" : ""
+              }`}
+            >
+              <span className="tm-hero-nav-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span className="tm-hero-nav-text">
+                <strong>{item.navTitle}</strong>
+                <small>{item.navSubTitle}</small>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div> */}
     </section>
   );
 }
