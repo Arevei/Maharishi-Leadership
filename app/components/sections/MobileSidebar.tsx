@@ -113,11 +113,12 @@ export function MobileSidebar({
                     key={link.href}
                     href={link.href}
                     onClick={onClose}
-                    className={`border-b border-border/60 py-4 font-serif text-2xl leading-tight transition-colors ${
+                    data-active={isActive}
+                    className={`block border-b border-border/60 py-4 font-serif text-2xl leading-tight transition-colors ${
                       isActive
                         ? "text-primary"
                         : "text-primary/74 hover:text-primary"
-                    }`}
+                    } nav-link-underline`}
                   >
                     {link.label}
                   </Link>
@@ -132,9 +133,10 @@ export function MobileSidebar({
                   onClose();
                   openConsultationDrawer();
                 }}
-                className="w-full rounded-full bg-primary px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground shadow-[0_18px_50px_-28px_rgba(7,29,64,0.55)] transition-colors hover:bg-primary/90"
+                className="book-pill inline-flex w-full items-center justify-between rounded-full bg-[hsl(var(--cream)/0.96)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary shadow-[0_18px_50px_-28px_rgba(7,29,64,0.35)]"
               >
-                Consult Now
+                <span className="relative z-10">Consult Now</span>
+                <span className="book-pill-dot relative z-10" />
               </button>
             </div>
           </motion.aside>

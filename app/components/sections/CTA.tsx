@@ -12,6 +12,15 @@ export function CTA() {
     >
       <div
         aria-hidden
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, hsl(var(--cream)) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      <div
+        aria-hidden
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           background:

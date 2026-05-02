@@ -12,13 +12,11 @@ import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { openConsultationDrawer } = useConsultationDrawer();
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
-  const useLightHeroTone = isHomePage && !isScrolled;
 
   return (
     <>
@@ -36,9 +34,7 @@ export function Navbar() {
           <Link
             href="/"
             className={`group flex items-center gap-3 transition-colors ${
-              isScrolled || useLightHeroTone
-                ? "text-primary"
-                : "text-primary-foreground"
+              isScrolled ? "text-primary" : "text-primary-foreground"
             }`}
           >
             <Image
@@ -52,9 +48,7 @@ export function Navbar() {
               Maharishi{" "}
               <em
                 className={`not-italic ${
-                  isScrolled || useLightHeroTone
-                    ? "text-primary/60"
-                    : "text-primary-foreground/70"
+                  isScrolled ? "text-primary/60" : "text-primary-foreground/70"
                 }`}
               >
                 Leadership
@@ -69,15 +63,16 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-[13px] tracking-wide transition-colors ${
-                    isScrolled || useLightHeroTone
+                  data-active={isActive}
+                  className={`inline-flex text-[11px] font-semibold uppercase  transition-colors ${
+                    isScrolled
                       ? isActive
                         ? "text-primary"
                         : "text-primary/70 hover:text-primary"
                       : isActive
                         ? "text-primary-foreground"
                         : "text-primary-foreground/80 hover:text-primary-foreground"
-                  }`}
+                  } nav-link-underline`}
                 >
                   {link.label}
                 </Link>
@@ -86,21 +81,18 @@ export function Navbar() {
             <button
               type="button"
               onClick={openConsultationDrawer}
-              className={`ml-2 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
-                isScrolled || useLightHeroTone
-                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                  : "bg-[hsl(var(--cream))] text-primary hover:bg-[hsl(var(--sky))]"
-              }`}
+              className="book-pill ml-2 inline-flex items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >
-              Consult Now
+              <span className="relative z-10">Consult Now</span>
+              <span className="book-pill-dot relative z-10" />
             </button>
           </nav>
 
           <button
             type="button"
             className={`z-50 rounded-full p-2 transition-colors lg:hidden ${
-              isScrolled || useLightHeroTone
+              isScrolled
                 ? "text-primary hover:bg-primary/5"
                 : "text-primary-foreground hover:bg-white/10"
             }`}

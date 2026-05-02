@@ -3,6 +3,13 @@ import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { ConsultationDrawerProvider } from "@/app/components/consultation/ConsultationDrawerProvider";
 import "./globals.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://maharishi-leadership.vercel.app";
+const siteTitle =
+  "Maharishi Center for Leadership | Transcendental Meditation for Executive Performance";
+const siteDescription =
+  "A four-month executive development programme that uses Transcendental Meditation to strengthen clarity, creativity, resilience, health, and sustained leadership performance.";
+
 const bodyFont = Geist({
   variable: "--font-body",
   subsets: ["latin"],
@@ -22,9 +29,54 @@ const monoFont = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maharishi Center for Leadership",
-  description:
-    "A four-month executive development programme that uses Transcendental Meditation to strengthen clarity, creativity, resilience, and leadership performance.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Maharishi Center for Leadership",
+    template: "%s | Maharishi Center for Leadership",
+  },
+  description: siteDescription,
+  applicationName: "Maharishi Center for Leadership",
+  keywords: [
+    "Maharishi Center for Leadership",
+    "Transcendental Meditation",
+    "executive leadership programme",
+    "stress reduction",
+    "resilience training",
+    "brain coherence",
+    "leadership performance",
+  ],
+  authors: [{ name: "Maharishi Center for Leadership" }],
+  creator: "Maharishi Center for Leadership",
+  publisher: "Maharishi Center for Leadership",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: siteTitle,
+    description: siteDescription,
+    siteName: "Maharishi Center for Leadership",
+    images: [
+      {
+        url: "/images/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Maharishi Center for Leadership",
+      },
+    ],
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/hero.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

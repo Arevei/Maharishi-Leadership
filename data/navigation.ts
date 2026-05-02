@@ -37,13 +37,13 @@ export const footerColumns = [
       },
     ],
   },
-  {
-    heading: "Contact",
-    links: [
-      { label: "Free Intro Talk", href: getContactHref("intro-talk") },
-      { label: "Press & Research", href: getContactHref("press-research") },
-      { label: "Contact Page", href: "/contact" },
-      { label: "tm.org", href: "https://www.tm.org", external: true },
-    ],
-  },
+  // {
+  //   heading: "Contact",
+  //   links: [
+  //     { label: "Free Intro Talk", href: getContactHref("intro-talk") },
+  //     { label: "Press & Research", href: getContactHref("press-research") },
+  //     { label: "Contact Page", href: "/contact" },
+  //     { label: "tm.org", href: "https://www.tm.org", external: true },
+  //   ],
+  // },
 ] as const;

@@ -42,8 +42,26 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="bg-primary text-primary-foreground py-24 md:py-36 overflow-hidden"
+      className="relative overflow-hidden bg-primary py-24 text-primary-foreground md:py-36"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, hsl(var(--cream)) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          background:
+            "radial-gradient(circle at top left, hsl(var(--sky) / 0.16), transparent 24%), radial-gradient(circle at right bottom, hsl(var(--peach) / 0.16), transparent 24%)",
+        }}
+      />
+
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +88,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="bg-primary p-10 hover:bg-primary-foreground/[0.04] transition-colors"
+              className="bg-primary p-10 transition-colors hover:bg-[hsl(var(--peach)/0.08)]"
             >
               <div className="mb-8 flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)]">
                 <Image

@@ -128,11 +128,11 @@ export function Benefits() {
 
   useEffect(() => {
     const activeButton = tabRefs.current[tab];
-    activeButton?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
+    // activeButton?.scrollIntoView({
+    //   behavior: "smooth",
+    //   inline: "center",
+    //   block: "nearest",
+    // });
   }, [tab]);
 
   return (
