@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { ConsultationDrawerProvider } from "@/app/components/consultation/ConsultationDrawerProvider";
 import "./globals.css";
 
 const bodyFont = Geist({
@@ -37,7 +38,7 @@ export default function RootLayout({
       className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} h-full bg-background`}
     >
       <body className="min-h-full flex flex-col text-foreground antialiased">
-        {children}
+        <ConsultationDrawerProvider>{children}</ConsultationDrawerProvider>
       </body>
     </html>
   );

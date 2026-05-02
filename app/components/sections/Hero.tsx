@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
+import { useConsultationDrawer } from "@/app/components/consultation/ConsultationDrawerProvider";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "./home-hero-slider.css";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 
 type SliderItem = {
   id: number;
@@ -18,7 +19,8 @@ type SliderItem = {
   subtitle: string;
   reference?: string;
   buttonText: string;
-  buttonLink: string;
+  buttonAction: "link" | "consult";
+  buttonLink?: string;
   image: string;
   bgColor: string;
   navTitle: string;
@@ -32,6 +34,7 @@ const sliderData: SliderItem[] = [
     subtitle:
       "Experience a calmer mind and a more settled nervous system. Transcendental Meditation helps reduce daily stress, ease mental overload, and support clear, steady responses under pressure.",
     buttonText: "Discover Now",
+    buttonAction: "link",
     buttonLink: "/programme",
     image: "/images/tm-hero-1.png",
     bgColor: "#f4e8b4",
@@ -46,6 +49,7 @@ const sliderData: SliderItem[] = [
     reference:
       "International Journal of Psychophysiology, 2009. https://doi.org/10.1016/j.ijpsycho.2008.09.007",
     buttonText: "Explore Now",
+    buttonAction: "link",
     buttonLink: "/science",
     image: "/images/tm-hero-2.png",
     bgColor: "#eef3d8",
@@ -58,6 +62,7 @@ const sliderData: SliderItem[] = [
     subtitle:
       "Support deeper rest, steadier energy, and long-term well-being. By reducing stress at its root, TM helps the body recover naturally while keeping the mind alert and refreshed.",
     buttonText: "Learn More",
+    buttonAction: "link",
     buttonLink: "/benefits",
     image: "/images/tm-hero-3.png",
     bgColor: "#e4f0e8",
@@ -72,7 +77,7 @@ const sliderData: SliderItem[] = [
     reference:
       "Permanente Journal, 2018. https://doi.org/10.7812/TPP/17-172",
     buttonText: "Consult Now",
-    buttonLink: "/consultation",
+    buttonAction: "consult",
     image: "/images/tm-hero-4.png",
     bgColor: "#f1e7c8",
     navTitle: "Stronger",
@@ -82,19 +87,15 @@ const sliderData: SliderItem[] = [
 
 export default function HomeHeroSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const goToSlide = (index: number) => {
-    swiperRef.current?.slideTo(index);
-    setActiveIndex(index);
-  };
+  const { openConsultationDrawer } = useConsultationDrawer();
 
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f7d957_0%,#fff4c6_42%,#9fdcff_100%)]">
-       <div aria-hidden className="absolute inset-0">
+      <div aria-hidden className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(255,255,255,0.82),transparent_24%),radial-gradient(circle_at_82%_16%,rgba(255,255,255,0.42),transparent_22%),radial-gradient(circle_at_76%_78%,rgba(22,40,79,0.08),transparent_28%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(22,40,79,0.14)_0%,rgba(22,40,79,0)_18%,rgba(255,255,255,0.08)_100%)]" />
       </div>
+
       <Swiper
         modules={[EffectFade, Autoplay]}
         slidesPerView={1}
@@ -112,9 +113,6 @@ export default function HomeHeroSlider() {
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        onSlideChange={(swiper) => {
-          setActiveIndex(swiper.activeIndex);
-        }}
         className="tm-hero-swiper"
       >
         {sliderData.map((item) => (
@@ -125,17 +123,25 @@ export default function HomeHeroSlider() {
             >
               <div className="tm-hero-circle tm-hero-circle-one" />
               <div className="tm-hero-circle tm-hero-circle-two" />
+              <div className="tm-hero-orbit" aria-hidden>
+                <div className="tm-hero-orbit-core" />
+                <div className="tm-hero-orbit-ring" />
+                <div className="tm-hero-orbit-content">
+                  <p className="tm-hero-orbit-title">TM</p>
+                  <p className="tm-hero-orbit-label">Effortless Transcending</p>
+                </div>
+              </div>
 
               <div className="tm-hero-container">
                 <div className="tm-hero-content">
-                  <p className="tm-hero-pretitle uppercase">Maharishi Center for Leadership
-              <span className="block pt-2 text-primary-foreground/58">
-                In Partnership with CII
-              </span></p>
+                  <p className="tm-hero-pretitle uppercase">
+                    Maharishi Center for Leadership
+                    <span className="block pt-2 ">
+                      In Partnership with CII
+                    </span>
+                  </p>
 
-                  <h1 className="tm-hero-title">
-                    {item.title}
-                  </h1>
+                  <h1 className="tm-hero-title">{item.title}</h1>
 
                   <p className="tm-hero-subtitle">{item.subtitle}</p>
 
@@ -143,10 +149,21 @@ export default function HomeHeroSlider() {
                     <p className="tm-hero-reference">{item.reference}</p>
                   )}
 
-                  <Link href={item.buttonLink} className="tm-hero-button">
-                    {item.buttonText}
-                    <span>→</span>
-                  </Link>
+                  {item.buttonAction === "consult" ? (
+                    <button
+                      type="button"
+                      onClick={openConsultationDrawer}
+                      className="tm-hero-button"
+                    >
+                      {item.buttonText}
+                      <span>&rarr;</span>
+                    </button>
+                  ) : (
+                    <Link href={item.buttonLink ?? "/"} className="tm-hero-button">
+                      {item.buttonText}
+                      <span>&rarr;</span>
+                    </Link>
+                  )}
                 </div>
               </div>
 
@@ -165,56 +182,25 @@ export default function HomeHeroSlider() {
         ))}
       </Swiper>
 
-      {/* Arrow buttons */}
       <div className="tm-hero-arrows ">
         <button
-        className="rounded-full bg-white/80"
+          className="rounded-full bg-white/80"
           type="button"
           aria-label="Previous slide"
           onClick={() => swiperRef.current?.slidePrev()}
         >
-          <ArrowLeft/>
+          <ArrowLeft />
         </button>
 
         <button
-        className="rounded-full bg-white/80"
+          className="rounded-full bg-white/80"
           type="button"
           aria-label="Next slide"
           onClick={() => swiperRef.current?.slideNext()}
         >
-          <ArrowRight/>
+          <ArrowRight />
         </button>
       </div>
-
-      {/* Replaced dots with auto-scroll title navigation */}
-      {/* <div className="tm-hero-nav">
-        <div
-          className="tm-hero-nav-track"
-          style={{
-            transform: `translateY(-${activeIndex * 74}px)`,
-          }}
-        >
-          {sliderData.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => goToSlide(index)}
-              className={`tm-hero-nav-item ${
-                activeIndex === index ? "active" : ""
-              }`}
-            >
-              <span className="tm-hero-nav-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <span className="tm-hero-nav-text">
-                <strong>{item.navTitle}</strong>
-                <small>{item.navSubTitle}</small>
-              </span>
-            </button>
-          ))}
-        </div>
-      </div> */}
     </section>
   );
 }

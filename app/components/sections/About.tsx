@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -88,25 +89,28 @@ export function About() {
                     index: "01",
                     title: "Clarity in Decision-Making",
                     desc: "The technique works because it is effortless. ",
-                    imag:"/decision-making.avif"
+                    imag:"/decision-making.avif",
+                    reference:"https://doi.org/10.1016/j.ijpsycho.2008.09.007"
                   },
                   {
                     index: "02",
                     title: "Emotional Intelligence",
                     desc: "Stay composed when stakes are high.",
-                    imag:"/emotional-intelligence.jpg"
+                    imag:"/emotional-intelligence.jpg",
+                    reference:"https://www.thepermanentejournal.org/doi/10.7812/TPP/17-172"
                   },
                   {
                     index: "03",
                     title: "Sustained Focus",
                     desc: "Execute with consistency, not just intent.",
-                    imag:"/focus.avif"
+                    imag:"/focus.avif",
+                    reference:"https://doi.org/10.1038/s41598-025-14898-w"
                   },
                 ].map((point) => (
               
                   <div
                     key={point.title}
-                    className="rounded-[1.45rem] flex  bg-card  shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)]"
+                    className="relative rounded-[1.45rem] flex  bg-card  shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)]"
                   >
                     <div className="w-[30%]  px-5">
                       <Image
@@ -128,6 +132,7 @@ export function About() {
                       {point.desc}
                     </p>
                     </div>
+                    <Link href={point.reference} target="_blank" className="p-4 absolute right-0 top-0"><ExternalLink className="text-[#0b2d4d]"/></Link>
                   </div>
                 ))}
               </div>

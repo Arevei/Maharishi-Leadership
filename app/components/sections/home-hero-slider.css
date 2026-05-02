@@ -166,13 +166,83 @@
 .tm-hero-circle-one {
   width: 820px;
   height: 820px;
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.42);
 }
 
 .tm-hero-circle-two {
   width: 720px;
   height: 720px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tm-hero-orbit {
+  position: absolute;
+  left: 58%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.tm-hero-orbit-core {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.7), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(159, 220, 255, 0.2), rgba(159, 220, 255, 0.08) 72%, rgba(159, 220, 255, 0.03) 100%);
+  border: 1px solid rgba(11, 45, 77, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  animation: tmHeroBreathe 6s ease-in-out infinite;
+}
+
+.tm-hero-orbit-ring {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 45, 77, 0.14);
+  animation: tmHeroRingPulse 6s ease-in-out 1s infinite;
+}
+
+.tm-hero-orbit-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+}
+
+.tm-hero-orbit-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(60px, 7vw, 112px);
+  line-height: 0.92;
+  font-weight: 300;
+  letter-spacing: -0.08em;
+  color: rgba(11, 45, 77, 0.86);
+}
+
+.tm-hero-orbit-label {
+  margin: 14px 0 0;
+  max-width: 190px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(170, 126, 45, 0.92);
 }
 
 /* Arrows */
@@ -353,6 +423,49 @@
   animation-delay: 0.42s;
 }
 
+.tm-hero-swiper .swiper-slide-active .tm-hero-orbit-content {
+  animation: tmCircleReveal 0.95s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes tmHeroBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 0.92;
+  }
+}
+
+@keyframes tmHeroRingPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.38;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes tmCircleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes tmFadeUp {
   from {
     opacity: 0;
@@ -395,15 +508,15 @@
   }
 
   .tm-hero-title {
-    font-size: 72px;
+    font-size: 50px;
   }
 
   .tm-hero-subtitle {
-    font-size: 19px;
+    font-size: 16px;
   }
 
   .tm-hero-image {
-    width: 680px;
+    width: 500px;
     right: -130px;
     bottom: 0;
     opacity: 0.9;
@@ -424,6 +537,23 @@
     height: 640px;
   }
 
+  .tm-hero-orbit {
+    left: 56%;
+    top: 55%;
+    width: 400px;
+    height: 400px;
+  }
+
+  .tm-hero-orbit-core {
+    width: 320px;
+    height: 320px;
+  }
+
+  .tm-hero-orbit-ring {
+    width: 400px;
+    height: 400px;
+  }
+
   .tm-hero-arrows {
     right: 7%;
     bottom: 9%;
@@ -440,7 +570,7 @@
   .tm-hero-swiper,
   .tm-hero-slide {
     height: 100svh;
-    min-height: 760px;
+    min-height: 850px;
   }
 
   .tm-hero-container {
@@ -453,19 +583,19 @@
   }
 
   .tm-hero-pretitle {
-    font-size: 31px;
+    font-size: 15px;
     margin-bottom: 12px;
   }
 
   .tm-hero-title {
-    font-size: 54px;
+    font-size: 40px;
     line-height: 0.98;
     margin-bottom: 26px;
   }
 
   .tm-hero-subtitle {
     max-width: 330px;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.5;
     margin-bottom: 22px;
   }
@@ -486,9 +616,10 @@
   }
 
   .tm-hero-image {
-    width: 560px;
-    right: -220px;
-    bottom: 0;
+    width: 450px;
+    right: -50px;
+    top: auto;
+    bottom: -30;
     z-index: 2;
   }
 
@@ -505,6 +636,34 @@
   .tm-hero-circle-two {
     width: 540px;
     height: 540px;
+  }
+
+  .tm-hero-orbit {
+    left: 50%;
+    top: 53%;
+    width: 300px;
+    height: 300px;
+  }
+
+  .tm-hero-orbit-core {
+    width: 230px;
+    height: 230px;
+  }
+
+  .tm-hero-orbit-ring {
+    width: 300px;
+    height: 300px;
+  }
+
+  .tm-hero-orbit-title {
+    font-size: 66px;
+  }
+
+  .tm-hero-orbit-label {
+    margin-top: 10px;
+    max-width: 145px;
+    font-size: 9px;
+    letter-spacing: 0.24em;
   }
 
   .tm-hero-arrows {
@@ -569,37 +728,44 @@
 @media (max-width: 420px) {
   .tm-hero-swiper,
   .tm-hero-slide {
-    min-height: 740px;
+    min-height: 920px;
   }
 
   .tm-hero-container {
     padding: 110px 24px 0;
+    text-align: center;
   }
 
   .tm-hero-content {
-    max-width: 92%;
+    max-width: 100%;
   }
 
   .tm-hero-pretitle {
-    font-size: 27px;
+    font-size: 12px;
+   
   }
 
   .tm-hero-title {
-    font-size: 47px;
+    font-size: 35px;
   }
 
   .tm-hero-subtitle {
     max-width: 285px;
-    font-size: 16px;
+    font-size: 14px;
+     margin-left: auto;
+    margin-right: auto;
   }
 
   .tm-hero-reference {
-    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .tm-hero-image {
-    width: 510px;
-    right: -225px;
+    width: 400px;
+    top:auto;
+    bottom: -10;
+    right: -10;
   }
 
   .tm-hero-circle-one {
@@ -610,6 +776,25 @@
   .tm-hero-circle-two {
     width: 490px;
     height: 490px;
+  }
+
+  .tm-hero-orbit {
+    width: 260px;
+    height: 260px;
+  }
+
+  .tm-hero-orbit-core {
+    width: 200px;
+    height: 200px;
+  }
+
+  .tm-hero-orbit-ring {
+    width: 260px;
+    height: 260px;
+  }
+
+  .tm-hero-orbit-title {
+    font-size: 58px;
   }
 
   .tm-hero-nav {

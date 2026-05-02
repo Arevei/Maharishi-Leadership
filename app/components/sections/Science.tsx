@@ -29,13 +29,13 @@ const scienceCollage = [
     src: "/images/TM-science.png",
     alt: "A meditator sitting against a warm sunset sky",
     className:
-      "absolute -right-10 top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))]",
+      "absolute -right-[25%] md:-right-[20%] lg:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
   },
   {
     src: "/images/tm-1.jpg",
     alt: "A practitioner meditating at sunrise",
     className:
-      "absolute left-8 bottom-8 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
+      "absolute left-[10%] md:left-[7%] lg:-left-[10%] bottom-8 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
   },
 ];
 
@@ -47,7 +47,7 @@ export function Science() {
     >
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        className="absolute  inset-0 pointer-events-none opacity-[0.05]"
         style={{
           backgroundImage:
             "radial-gradient(circle, hsl(var(--cream)) 1px, transparent 1px)",
@@ -78,7 +78,7 @@ export function Science() {
             </p>
           </motion.div>
 
-          <div className="relative mx-auto h-[430px] w-full max-w-[430px]">
+          <div className="relative mx-auto h-[430px] w-full max-w-[430px] mx-auto">
             
 
             {scienceCollage.map((item) => (

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { getContactHref } from "@/data/contact";
+import { useConsultationDrawer } from "@/app/components/consultation/ConsultationDrawerProvider";
 import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
@@ -14,6 +14,7 @@ export function Navbar() {
   const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openConsultationDrawer } = useConsultationDrawer();
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
   const useLightHeroTone = isHomePage && !isScrolled && !open;
@@ -86,8 +87,9 @@ export function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href={getContactHref("intro-talk")}
+          <button
+            type="button"
+            onClick={openConsultationDrawer}
             className={`ml-2 px-6 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
               isScrolled || useLightHeroTone
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -96,7 +98,7 @@ export function Navbar() {
             data-testid="nav-cta"
           >
             Consult Now
-          </Link>
+          </button>
         </nav>
 
         <button
@@ -126,13 +128,16 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href={getContactHref("intro-talk")}
-            onClick={() => setOpen(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openConsultationDrawer();
+            }}
             className="mt-8 text-center px-8 py-4 rounded-full bg-[hsl(var(--cream))] text-primary text-sm uppercase tracking-[0.2em] shadow-[0_20px_50px_-30px_rgba(255,255,255,0.7)]"
           >
             Consult Now
-          </Link>
+          </button>
         </div>
       )}
     </motion.header>
