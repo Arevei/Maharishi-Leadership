@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link2 } from "lucide-react";
+import { ExternalLink, Link2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 const stats = [
@@ -29,13 +29,13 @@ const scienceCollage = [
     src: "/images/TM-science.png",
     alt: "A meditator sitting against a warm sunset sky",
     className:
-      "absolute -right-[25%] md:-right-[20%] lg:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
+      "absolute max-[500px]:-right-[18%] max-[500px]:-right-[20%] -right-[25%] md:-right-[20%] lg:-right-[15%] xl:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
   },
   {
     src: "/images/tm-1.jpg",
     alt: "A practitioner meditating at sunrise",
     className:
-      "absolute left-[10%] md:left-[7%] lg:-left-[10%] bottom-8 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
+      "absolute max-[427px]:left-[2%] max-[500px]:left-[5%] left-[10%] md:left-[7%] lg:left-[10%] xl:left-[5%] bottom-8 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
   },
 ];
 
@@ -147,7 +147,7 @@ export function Science() {
                <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
                 EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex — the neurophysiological signature of integrated, high-functioning mental performance.
               </p>
-              <p  className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">For a full overview of the research: <Link href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"><Link2/></Link></p>
+              <p  className=" flex mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">For a full overview of the research: <Link href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"><ExternalLink/></Link></p>
             </div>
 
             <div className="space-y-4">

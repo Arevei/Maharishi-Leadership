@@ -5,31 +5,62 @@ import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-
+const transformationPoints = [
+  {
+    index: "01",
+    title: "Clarity in Decision-Making",
+    desc: "The technique works because it is effortless.",
+    image: "/images/decision-making.avif",
+    reference: "https://doi.org/10.1016/j.ijpsycho.2008.09.007",
+  },
+  {
+    index: "02",
+    title: "Emotional Intelligence",
+    desc: "Stay composed when stakes are high.",
+    image: "/images/emotional-intelligence.jpg",
+    reference: "https://www.thepermanentejournal.org/doi/10.7812/TPP/17-172",
+  },
+  {
+    index: "03",
+    title: "Sustained Focus",
+    desc: "Execute with consistency, not just intent.",
+    image: "/images/focus.avif",
+    reference: "https://doi.org/10.1038/s41598-025-14898-w",
+  },
+] as const;
 
 export function About() {
   return (
-    <section id="about" className="bg-card py-24 md:py-36">
+    <section id="about" className="overflow-hidden bg-card py-24 md:py-36">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 xl:gap-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="lg:col-span-5 relative h-[440px] md:h-[520px]"
+            transition={{ duration: 1.1 }}
+            className="min-w-0"
           >
-            <p className="flex items-center gap-3 text-[hsl(var(--peach-deep))] uppercase text-[11px] tracking-[0.3em] font-medium mb-6">
-              <span className="w-7 h-px bg-[hsl(var(--peach-deep))]" /> The
-              Programme
+            <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[hsl(var(--peach-deep))]">
+              <span className="h-px w-7 bg-[hsl(var(--peach-deep))]" />
+              The Programme
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-8">
+            <h2 className=" font-serif text-4xl leading-[1.03] font-light text-primary sm:text-5xl xl:text-6xl">
               One effortless practice.{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
                 A lifetime of benefits.
               </em>
             </h2>
-           <Image src="/images/Headview.png" width={600} height={400} alt="EEG coherence" />
+
+            <div className="mt-8 max-w-[34rem] overflow-hidden rounded-[2rem] sm:p-5">
+              <Image
+                src="/images/Headview.png"
+                width={600}
+                height={400}
+                alt="Brain coherence comparison during Transcendental Meditation"
+                className="h-auto w-full rounded-[1.35rem] object-contain"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -37,10 +68,9 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="lg:col-span-7"
+            className="min-w-0 lg:pt-10 xl:pt-14"
           >
-            
-            <div className="space-y-6 text-base sm:text-lg text-primary/70 leading-[1.85] font-light max-w-2xl">
+            <div className="max-w-none space-y-6 text-base leading-[1.9] font-light text-primary/70 sm:text-lg">
               <p>
                 TM is a simple, natural technique practised twice a day for
                 twenty minutes, sitting comfortably with the eyes closed. It
@@ -59,84 +89,72 @@ export function About() {
                 Under sustained pressure, the brain&apos;s decision-making centre
                 loses efficiency. TM restores it, delivering deep physiological
                 rest while keeping the brain fully alert and coherent. The
-                result is sharper thinking, faster recovery, and more
-                consistent performance.
+                result is sharper thinking, faster recovery, and more consistent
+                performance.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="mt-12 rounded-[2rem] bg-background/80  shadow-[0_24px_60px_-44px_rgba(7,29,64,0.22)] ">
+          <div className="flex flex-col gap-5 pb-3 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-[hsl(var(--peach-deep))]">
+                The Transformation Achieved by TM
               </p>
             </div>
 
-          </motion.div>
-        </div>
-            <div className="mt-12 rounded-[2rem]  bg-background/80 p-6  md:p-8">
-              <div className="flex flex-col gap-5  pb-3 md:flex-row md:items-end md:justify-between">
-                <div className="max-w-2xl">
-                  <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-[hsl(var(--peach-deep))]">
-                    The Transformation Achieved by TM
-                  </p>
-                  
-                </div>
+            <Link
+              href="/#curriculum"
+              className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-4 py-2 text-sm font-medium uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              View Curriculum
+            </Link>
+          </div>
 
-                <Link
-                  href="/#curriculum"
-                  className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-4 py-2 text-sm font-medium uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  View Curriculum
-                </Link>
-              </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {transformationPoints.map((point) => (
+              <article
+                key={point.title}
+                className=" border border-border/60 bg-card/95 px-4 py-4 shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)] sm:px-5"
+              >
+                <div className="grid grid-cols-[76px_minmax(0,1fr)_auto] gap-4 sm:grid-cols-[95px_minmax(0,1fr)_auto]">
+                  <div className="relative h-[100px] width-[100px] my-auto overflow-hidden  bg-muted">
+                    <Image
+                      src={point.image}
+                      alt={point.title}
+                      fill
+                      sizes="150px"
+                      className="object-cover  width-[100px]"
+                    />
+                  </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {[
-                  {
-                    index: "01",
-                    title: "Clarity in Decision-Making",
-                    desc: "The technique works because it is effortless. ",
-                    imag:"/decision-making.avif",
-                    reference:"https://doi.org/10.1016/j.ijpsycho.2008.09.007"
-                  },
-                  {
-                    index: "02",
-                    title: "Emotional Intelligence",
-                    desc: "Stay composed when stakes are high.",
-                    imag:"/emotional-intelligence.jpg",
-                    reference:"https://www.thepermanentejournal.org/doi/10.7812/TPP/17-172"
-                  },
-                  {
-                    index: "03",
-                    title: "Sustained Focus",
-                    desc: "Execute with consistency, not just intent.",
-                    imag:"/focus.avif",
-                    reference:"https://doi.org/10.1038/s41598-025-14898-w"
-                  },
-                ].map((point) => (
-              
-                  <div
-                    key={point.title}
-                    className="relative rounded-[1.45rem] flex  bg-card  shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)]"
-                  >
-                    <div className="w-[30%]  px-5">
-                      <Image
-                                        src={`/images${point.imag}`}
-                                        alt={point.imag}
-                                        width={320}
-                                        height={160}
-                                        className=" w-full h-full my-auto object-cover"
-                                      />
-                    </div>
-                    <div className="w-[70%] my-auto">
-                   
-                    <h4 className=" text-lg font-medium leading-snug text-primary">
-                       <span className=" uppercase  text-[hsl(var(--peach-deep))]">
-                      {point.index}
-                    </span> - {point.title}
+                  <div className="min-w-0 py-1 pr-2">
+                    <h4 className=" text-primary font-bold">
+                      <span className=" uppercase  text-[hsl(var(--peach-deep))] font-bold">
+                        {point.index}
+                      </span>{" "}
+                      - {point.title}
                     </h4>
-                    <p className="mt-3 text-[14px] leading-[1.8] text-primary/60">
+                    <p className="mt-3 text-[15px]  text-primary/60">
                       {point.desc}
                     </p>
-                    </div>
-                    <Link href={point.reference} target="_blank" className="p-4 absolute right-0 top-0"><ExternalLink className="text-[#0b2d4d]"/></Link>
                   </div>
-                ))}
-              </div>
-            </div>
+
+                  <Link
+                    href={point.reference}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                    aria-label={`Open reference for ${point.title}`}
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

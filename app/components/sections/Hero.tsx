@@ -149,21 +149,21 @@ export default function HomeHeroSlider() {
                     <p className="tm-hero-reference">{item.reference}</p>
                   )}
 
-                  {item.buttonAction === "consult" ? (
-                    <button
+                  <button
                       type="button"
                       onClick={openConsultationDrawer}
-                      className="tm-hero-button"
+                      className="tm-hero-button conslt"
                     >
-                      {item.buttonText}
-                      <span>&rarr;</span>
-                    </button>
-                  ) : (
+                      Book a free intro talk
+                      
+                  </button>
+
+                  {item.buttonLink ? (
                     <Link href={item.buttonLink ?? "/"} className="tm-hero-button">
                       {item.buttonText}
                       <span>&rarr;</span>
                     </Link>
-                  )}
+                  ): ""}
                 </div>
               </div>
 

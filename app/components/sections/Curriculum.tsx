@@ -71,7 +71,7 @@ export function Curriculum() {
   return (
     <section
       id="curriculum"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,hsl(var(--sky)/0.22)_0%,hsl(var(--background))_100%)] py-24 md:py-36"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,hsl(var(--sky)/0.22)_0%,hsl(var(--background))_100%)] pt-24 md:pt-36"
     >
       <div
         aria-hidden
@@ -82,13 +82,13 @@ export function Curriculum() {
         }}
       />
 
-      <div className="container relative mx-auto px-6 md:px-12">
+      <div className="container relative mx-auto  md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="max-w-4xl"
+          className="max-w-4xl px-6"
         >
           <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.32em] text-[hsl(var(--peach-deep))]">
             <span className="h-px w-8 bg-[hsl(var(--peach-deep))]" />
@@ -113,7 +113,7 @@ export function Curriculum() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="mt-10 grid gap-4 md:grid-cols-3"
+          className="mt-10 grid gap-4 md:grid-cols-3 px-6"
         >
           {factStrip.map((fact) => (
             <div

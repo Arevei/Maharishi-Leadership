@@ -104,7 +104,7 @@
   transform: translateY(30px);
 }
 
-.tm-hero-button {
+.tm-hero-button  {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -121,6 +121,10 @@
   transition: all 0.35s ease;
   opacity: 0;
   transform: translateY(40px);
+}
+.tm-hero-button.conslt{
+  background: #0b2d4d;
+  color: #ffffff;
 }
 
 .tm-hero-button:hover {
@@ -516,8 +520,9 @@
   }
 
   .tm-hero-image {
-    width: 500px;
-    right: -130px;
+    width: 450px;
+    right: -30px;
+    top: auto;
     bottom: 0;
     opacity: 0.9;
   }

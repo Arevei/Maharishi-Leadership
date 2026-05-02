@@ -5,8 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useConsultationDrawer } from "@/app/components/consultation/ConsultationDrawerProvider";
+import { MobileSidebar } from "@/app/components/sections/MobileSidebar";
 import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
@@ -17,129 +18,105 @@ export function Navbar() {
   const { openConsultationDrawer } = useConsultationDrawer();
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
-  const useLightHeroTone = isHomePage && !isScrolled && !open;
+  const useLightHeroTone = isHomePage && !isScrolled;
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        open
-          ? "bg-primary py-3 border-b border-primary-foreground/10"
-          : isScrolled
-          ? "bg-background/85 backdrop-blur-xl py-3 border-b border-border/60"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link
-          href="/"
-          className={`flex items-center gap-3 group transition-colors ${
-            open
-              ? "text-primary-foreground"
-              : isScrolled || useLightHeroTone
+    <>
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-background/90 py-3 border-b border-border/60 backdrop-blur-xl"
+            : "bg-transparent py-6"
+        }`}
+      >
+        <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
+          <Link
+            href="/"
+            className={`group flex items-center gap-3 transition-colors ${
+              isScrolled || useLightHeroTone
                 ? "text-primary"
                 : "text-primary-foreground"
-          }`}
-        >
-          <Image
-            src="/Maharishi-logo.jpg"
-            alt="Maharishi Center for Leadership tree-of-life mark"
-            width={44}
-            height={44}
-            className="w-11 h-11 rounded-full object-cover shadow-sm shrink-0"
-          />
-          <span className="font-serif text-xl tracking-tight">
-            Maharishi{" "}
-            <em
-              className={`not-italic ${
-                open
-                  ? "text-primary-foreground/70"
-                  : isScrolled || useLightHeroTone
+            }`}
+          >
+            <Image
+              src="/Maharishi-logo.jpg"
+              alt="Maharishi Center for Leadership tree-of-life mark"
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-full object-cover shadow-sm"
+            />
+            <span className="font-serif text-xl tracking-tight">
+              Maharishi{" "}
+              <em
+                className={`not-italic ${
+                  isScrolled || useLightHeroTone
                     ? "text-primary/60"
                     : "text-primary-foreground/70"
-              }`}
-            >
-              Leadership
-            </em>
-          </span>
-        </Link>
-
-        <nav className="hidden lg:flex items-center gap-9">
-          {primaryNavLinks.map((link) => {
-            const isActive = link.href === pathname;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[13px] tracking-wide transition-colors ${
-                  isScrolled || useLightHeroTone
-                    ? isActive
-                      ? "text-primary"
-                      : "text-primary/70 hover:text-primary"
-                    : isActive
-                      ? "text-primary-foreground"
-                      : "text-primary-foreground/80 hover:text-primary-foreground"
                 }`}
               >
-                {link.label}
-              </Link>
-            );
-          })}
-          <button
-            type="button"
-            onClick={openConsultationDrawer}
-            className={`ml-2 px-6 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
-              isScrolled || useLightHeroTone
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : "bg-[hsl(var(--cream))] text-primary hover:bg-[hsl(var(--sky))]"
-            }`}
-            data-testid="nav-cta"
-          >
-            Consult Now
-          </button>
-        </nav>
+                Leadership
+              </em>
+            </span>
+          </Link>
 
-        <button
-          className={`lg:hidden p-2 z-50 ${
-            open
-              ? "text-primary-foreground"
-              : isScrolled || useLightHeroTone
-                ? "text-primary"
-                : "text-primary-foreground"
-          }`}
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </div>
-
-      {open && (
-        <div className="fixed inset-0 z-40 bg-primary pt-24 px-6 pb-10 flex flex-col gap-2 lg:hidden">
-          {primaryNavLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="text-left font-serif text-3xl text-primary-foreground py-4 border-b border-primary-foreground/14"
+          <nav className="hidden lg:flex items-center gap-9">
+            {primaryNavLinks.map((link) => {
+              const isActive = link.href === pathname;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-[13px] tracking-wide transition-colors ${
+                    isScrolled || useLightHeroTone
+                      ? isActive
+                        ? "text-primary"
+                        : "text-primary/70 hover:text-primary"
+                      : isActive
+                        ? "text-primary-foreground"
+                        : "text-primary-foreground/80 hover:text-primary-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            <button
+              type="button"
+              onClick={openConsultationDrawer}
+              className={`ml-2 rounded-full px-6 py-2.5 text-xs font-medium uppercase tracking-[0.15em] transition-colors ${
+                isScrolled || useLightHeroTone
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-[hsl(var(--cream))] text-primary hover:bg-[hsl(var(--sky))]"
+              }`}
+              data-testid="nav-cta"
             >
-              {link.label}
-            </Link>
-          ))}
+              Consult Now
+            </button>
+          </nav>
+
           <button
             type="button"
-            onClick={() => {
-              setOpen(false);
-              openConsultationDrawer();
-            }}
-            className="mt-8 text-center px-8 py-4 rounded-full bg-[hsl(var(--cream))] text-primary text-sm uppercase tracking-[0.2em] shadow-[0_20px_50px_-30px_rgba(255,255,255,0.7)]"
+            className={`z-50 rounded-full p-2 transition-colors lg:hidden ${
+              isScrolled || useLightHeroTone
+                ? "text-primary hover:bg-primary/5"
+                : "text-primary-foreground hover:bg-white/10"
+            }`}
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
           >
-            Consult Now
+            <Menu className="h-5 w-5" />
           </button>
         </div>
-      )}
-    </motion.header>
+      </motion.header>
+
+      <MobileSidebar
+        open={open}
+        pathname={pathname}
+        onClose={() => setOpen(false)}
+      />
+    </>
   );
 }

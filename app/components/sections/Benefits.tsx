@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type TabKey = "mental" | "physical" | "performance";
 
@@ -118,7 +119,21 @@ const toneClass: Record<string, string> = {
 
 export function Benefits() {
   const [tab, setTab] = useState<TabKey>("mental");
+  const tabRefs = useRef<Partial<Record<TabKey, HTMLButtonElement | null>>>({});
   const d = data[tab];
+  const activeTabIndex = tabs.findIndex((item) => item.key === tab);
+  const previousTab = activeTabIndex > 0 ? tabs[activeTabIndex - 1] : null;
+  const nextTab =
+    activeTabIndex < tabs.length - 1 ? tabs[activeTabIndex + 1] : null;
+
+  useEffect(() => {
+    const activeButton = tabRefs.current[tab];
+    activeButton?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [tab]);
 
   return (
     <section id="benefits" className="bg-background py-24 md:py-36">
@@ -153,21 +168,56 @@ export function Benefits() {
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-0 border-b border-border mb-12">
-          {tabs.map((t) => (
+        <div className="mb-12">
+          <div className="flex items-end gap-2 sm:gap-3">
             <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className={`px-6 md:px-7 py-4 text-[13px] uppercase tracking-[0.15em] transition-colors -mb-px border-b-2 ${
-                tab === t.key
-                  ? "text-[hsl(var(--peach-deep))] border-[hsl(var(--peach-deep))] font-medium"
-                  : "text-primary/55 border-transparent hover:text-primary"
-              }`}
-              data-testid={`benefits-tab-${t.key}`}
+              type="button"
+              onClick={() => previousTab && setTab(previousTab.key)}
+              disabled={!previousTab}
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 text-primary transition-colors hover:bg-primary hover:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-35 md:hidden"
+              aria-label={
+                previousTab
+                  ? `Show ${previousTab.label.toLowerCase()}`
+                  : "No previous tab"
+              }
             >
-              {t.label}
+              <ChevronLeft className="h-4 w-4" />
             </button>
-          ))}
+
+            <div className="min-w-0 flex-1">
+              <div className="flex overflow-x-auto overflow-y-hidden gap-0 border-b border-border scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                {tabs.map((t) => (
+                  <button
+                    key={t.key}
+                    ref={(element) => {
+                      tabRefs.current[t.key] = element;
+                    }}
+                    onClick={() => setTab(t.key)}
+                    className={`-mb-px whitespace-nowrap border-b-2 px-5 py-4 text-[12px] uppercase tracking-[0.15em] transition-colors sm:px-6 md:px-7 md:text-[13px] ${
+                      tab === t.key
+                        ? "border-[hsl(var(--peach-deep))] font-medium text-[hsl(var(--peach-deep))]"
+                        : "border-transparent text-primary/55 hover:text-primary"
+                    }`}
+                    data-testid={`benefits-tab-${t.key}`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => nextTab && setTab(nextTab.key)}
+              disabled={!nextTab}
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 text-primary transition-colors hover:bg-primary hover:text-primary-foreground disabled:cursor-not-allowed disabled:opacity-35 md:hidden"
+              aria-label={
+                nextTab ? `Show ${nextTab.label.toLowerCase()}` : "No next tab"
+              }
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -203,7 +253,7 @@ export function Benefits() {
               ))}
             </ul>
 
-            <div className="bg-card border border-border p-8 md:p-10 rounded-md">
+            <div className="rounded-md bg-card p-0 md:p-10 text-center">
               <p className="font-serif text-2xl text-primary font-light mb-1">
                 {d.chart.title}
               </p>
@@ -213,7 +263,7 @@ export function Benefits() {
               <div className="space-y-5">
                 {d.chart.bars.map((b, i) => (
                   <div key={b.name} className="flex items-center gap-4">
-                    <span className="text-[12px] text-primary/60 w-24 text-right shrink-0">
+                    <span className="text-[12px] text-primary/60 w-24 text-left shrink-0">
                       {b.name}
                     </span>
                     <div className="flex-1 h-5 bg-[hsl(var(--sky)/0.4)] rounded-sm overflow-hidden">

@@ -21,7 +21,7 @@ export const footerColumns = [
     links: [
       { label: "The Premise", href: "/#about" },
       { label: "The Science", href: "/#science" },
-      { label: "Benefits Page", href: "/benefits" },
+      { label: "Benefits Page", href: "/#benefits" },
       { label: "Voices", href: "/#testimonials" },
     ],
   },

@@ -151,7 +151,7 @@ export function Programme() {
                                          src="/images/tm-transfromation.webp"
                                          alt=""
                                          fill
-                                         sizes="(min-width: 1024px) 26rem, 100vw"
+                                         sizes="400px"
                                          className="object-cover"
                                        />
                       </div>

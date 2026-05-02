@@ -104,21 +104,21 @@ export function Testimonials() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-20 border-t border-primary-foreground/10 pt-8"
         >
-          <div className="mb-5 text-[11px] uppercase tracking-[0.28em] text-primary-foreground/45">
+          <div className="mb-5 text-[11px] text-center uppercase tracking-[0.28em] text-primary-foreground/45">
             Leaders and teams from institutions such as
           </div>
-          <div className="flex gap-4 ">
+          <div className="grid gap-2 md:gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 ">
             {companies.map((company) => (
               <div
                 key={company.name}
-                className="mb-8 flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)]"
+                className=" flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)] m-auto"
               >
                 <Image
                   src={company.logo}
                   alt={company.name}
                   width={200}
                   height={100}
-                  className="h-auto max-h-10 w-auto max-w-full object-contain"
+                  className="h-auto max-h-10 w-auto max-w-full object-contain "
                 />
               </div>
             ))}
