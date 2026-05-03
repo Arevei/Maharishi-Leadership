@@ -1,6 +1,14 @@
-"use client"
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+"use client";
+
+import { useRef, useEffect, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+  useSpring,
+  useMotionValueEvent,
+} from "framer-motion";
 import { useConsultationDrawer } from "../consultation/ConsultationDrawerProvider";
 
 const TRUST_ITEMS = [
@@ -10,264 +18,407 @@ const TRUST_ITEMS = [
   "Endorsed by the American Heart Association",
 ];
 
-function ParticleOrb({
-  delay = 0,
-  size = 300,
-  x = "50%",
-  y = "50%",
-  color = "rgba(255,200,80,0.12)",
-}: {
-  delay?: number;
-  size?: number;
-  x?: string;
-  y?: string;
-  color?: string;
-}) {
-  return (
-    <motion.div
-      className="absolute rounded-full pointer-events-none"
-      style={{
-        width: size,
-        height: size,
-        left: x,
-        top: y,
-        transform: "translate(-50%, -50%)",
-        background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
-        filter: "blur(40px)",
-      }}
-      animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
-      transition={{ duration: 6 + delay, repeat: Infinity, ease: "easeInOut", delay }}
-    />
-  );
-}
-
-export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 600], ["0%", "20%"]);
-  const bgScale = useTransform(scrollY, [0, 600], [1, 1.08]);
-  const contentY = useTransform(scrollY, [0, 600], ["0%", "-8%"]);
-  const contentOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const [lineReady, setLineReady] = useState(false);
+export default function Hero() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const blurLayerRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
   const { openConsultationDrawer } = useConsultationDrawer();
 
   useEffect(() => {
-    const t = setTimeout(() => setLineReady(true), 600);
-    return () => clearTimeout(t);
+    setReady(true);
   }, []);
 
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 22,
+  });
+
+  // Radial blur mask
+  const clearPct = useTransform(smooth, [0, 0.3, 0.65], [55, 55, 22]);
+  const blurEdgePct = useTransform(smooth, [0, 0.3, 0.65], [72, 72, 55]);
+
+  useMotionValueEvent(clearPct, "change", (v) => {
+    if (!blurLayerRef.current) return;
+
+    const edge = blurEdgePct.get();
+
+    const mask = `radial-gradient(ellipse ${v}% ${
+      v * 0.88
+    }% at 50% 56%, transparent 0%, transparent ${
+      v * 0.95
+    }%, rgba(0,0,0,0.55) ${edge}%, black 100%)`;
+
+    blurLayerRef.current.style.maskImage = mask;
+    (
+      blurLayerRef.current.style as CSSStyleDeclaration & {
+        webkitMaskImage: string;
+      }
+    ).webkitMaskImage = mask;
+  });
+
+  useEffect(() => {
+    if (!blurLayerRef.current) return;
+
+    const mask =
+      "radial-gradient(ellipse 55% 48% at 50% 56%, transparent 0%, transparent 52%, rgba(0,0,0,0.55) 72%, black 100%)";
+
+    blurLayerRef.current.style.maskImage = mask;
+    (
+      blurLayerRef.current.style as CSSStyleDeclaration & {
+        webkitMaskImage: string;
+      }
+    ).webkitMaskImage = mask;
+  }, []);
+
+  // Background overlays
+  const vignetteOpacity = useTransform(
+    smooth,
+    [0, 0.35, 0.68, 0.82],
+    [0.5, 0.65, 0.88, 0]
+  );
+
+  const whiteOverlay = useTransform(smooth, [0.72, 0.97], [0, 1]);
+
+  // Scroll sections
+  const s1Opacity = useTransform(smooth, [0, 0.22, 0.45], [1, 1, 0]);
+  const s1Y = useTransform(smooth, [0, 0.45], ["0px", "-50px"]);
+
+  const s2Opacity = useTransform(smooth, [0.42, 0.68], [0, 1]);
+  const s2Y = useTransform(smooth, [0.42, 0.68], ["50px", "0px"]);
+
+  // Adaptive text colors
+  const lightMode = useTransform(smooth, [0.68, 0.95], [0, 1]);
+
+  const h_r = useTransform(lightMode, [0, 1], [255, 15]);
+  const h_g = useTransform(lightMode, [0, 1], [255, 44]);
+  const h_b = useTransform(lightMode, [0, 1], [255, 77]);
+  const headingColor = useMotionTemplate`rgba(${h_r},${h_g},${h_b},0.88)`;
+
+  const b_r = useTransform(lightMode, [0, 1], [255, 87]);
+  const b_g = useTransform(lightMode, [0, 1], [255, 83]);
+  const b_b = useTransform(lightMode, [0, 1], [255, 74]);
+  const bodyColor = useMotionTemplate`rgba(${b_r},${b_g},${b_b},0.9)`;
+
+  const hl_r = useTransform(lightMode, [0, 1], [252, 146]);
+  const hl_g = useTransform(lightMode, [0, 1], [211, 64]);
+  const hl_b = useTransform(lightMode, [0, 1], [77, 14]);
+  const highlightColor = useMotionTemplate`rgba(${hl_r},${hl_g},${hl_b},0.95)`;
+
+  const m_r = useTransform(lightMode, [0, 1], [255, 120]);
+  const m_g = useTransform(lightMode, [0, 1], [255, 113]);
+  const m_b = useTransform(lightMode, [0, 1], [255, 108]);
+  const mutedColor = useMotionTemplate`rgba(${m_r},${m_g},${m_b},0.7)`;
+
+  const dividerOpacity = useTransform(lightMode, [0, 1], [0.35, 0.6]);
+  const dividerColor = useMotionTemplate`rgba(217,119,6,${dividerOpacity})`;
+
+  const gb_r = useTransform(lightMode, [0, 1], [255, 15]);
+  const gb_g = useTransform(lightMode, [0, 1], [255, 44]);
+  const gb_b = useTransform(lightMode, [0, 1], [255, 77]);
+  const ghostColor = useMotionTemplate`rgba(${gb_r},${gb_g},${gb_b},0.75)`;
+  const ghostBorder = useMotionTemplate`rgba(${gb_r},${gb_g},${gb_b},0.28)`;
+
+  const ghostBg = useTransform(
+    lightMode,
+    [0, 1],
+    ["rgba(255,255,255,0.7)", "rgba(15,44,77,0.2)"]
+  );
+
   return (
-    <div className="bg-[#080604]">
-      {/* ── HERO ── */}
-      <div
-        ref={containerRef}
-        className="relative h-[50rem] min-h-[120vh]   w-full overflow-hidden flex flex-col items-center justify-center"
-        style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
-      >
-        {/* Background with parallax */}
-        <motion.div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ y: bgY, scale: bgScale, backgroundImage: `url(${"/images/hero-meditation-tree.png"})` }}
+    <section
+      ref={heroRef}
+      className="relative isolate h-[200vh] overflow-hidden"
+      
+    >
+      {/* HERO BACKGROUND - only inside hero, not fixed globally */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Sharp base image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/images/hero-meditation-tree.png)",
+          }}
         />
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(8,6,4,0.95) 0%, rgba(8,6,4,0.55) 38%, rgba(8,6,4,0.15) 65%, transparent 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(180,110,30,0.18) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(5,5,10,0.60) 0%, transparent 28%)",
-            }}
-          />
-        </div>
+        {/* Blurred copy */}
+        <div
+          ref={blurLayerRef}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url(/images/hero-meditation-tree.png)",
+            filter: "blur(26px)",
+            transform: "scale(1.06)",
+          }}
+        />
 
-        {/* Ambient orbs */}
-        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-          <ParticleOrb delay={0} size={600} x="50%" y="55%" color="rgba(240,180,60,0.10)" />
-          <ParticleOrb delay={2} size={400} x="30%" y="70%" color="rgba(100,160,240,0.07)" />
-          <ParticleOrb delay={3.5} size={350} x="70%" y="65%" color="rgba(200,140,60,0.08)" />
-        </div>
-
-        {/* Top decorative line */}
-        {/* <div className="absolute top-0 left-0 right-0 z-20 flex justify-center pt-6 pointer-events-none">
-          <motion.div
-            className="h-px bg-gradient-to-r from-transparent via-amber-300/40 to-transparent"
-            initial={{ width: "0%" }}
-            animate={{ width: lineReady ? "90%" : "0%" }}
-            transition={{ duration: 1.4, ease: "easeInOut" }}
-          />
-        </div> */}
-
-       
-
-        {/* Main content */}
+        {/* Warm vignette */}
         <motion.div
-          className="relative z-20 flex flex-col items-center text-center px-6 sm:px-10 max-w-4xl mx-auto"
-          style={{ y: contentY, opacity: contentOpacity }}
+          className="absolute inset-0"
+          style={{ opacity: vignetteOpacity }}
         >
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-            className="mb-6"
-          >
-            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-amber-300/25 bg-white/5 backdrop-blur-sm text-amber-200/85 text-xs sm:text-sm tracking-[0.2em] uppercase font-sans font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              Maharishi Center for Leadership
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-white leading-[1.1] mb-5"
+          <div
+            className="absolute inset-0"
             style={{
-              fontSize: "clamp(2.3rem, 5.5vw, 4.4rem)",
-              fontWeight: 400,
-              letterSpacing: "-0.01em",
+              background: `radial-gradient(ellipse 100% 100% at 50% 50%,
+                transparent 0%,
+                transparent 32%,
+                rgba(18,9,2,0.35) 58%,
+                rgba(14,7,1,0.72) 80%,
+                rgba(10,5,1,0.88) 100%)`,
             }}
-          >
-            World-Class Performance and{" "}
-            <br className="hidden sm:block" />
-            Resilience Is Built on{" "}
-            <motion.span
-              className="italic block sm:inline"
-              style={{
-                background:
-                  "linear-gradient(135deg, #f9d77e 0%, #e8a83a 50%, #f9d77e 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.9, delay: 0.9 }}
-            >
-              World-Class Brain Functioning.
-            </motion.span>
-          </motion.h1>
+          />
 
-          {/* Sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.75, ease: "easeOut" }}
-            className="text-white/55 font-sans font-light mb-4 tracking-wide"
-            style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)", lineHeight: 1.6 }}
-          >
-            Lead at a Higher Level.
-          </motion.p>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse 60% 50% at 50% 58%,
+                rgba(200,120,20,0.18) 0%,
+                rgba(160,80,10,0.10) 45%,
+                transparent 75%)`,
+            }}
+          />
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.95, ease: "easeOut" }}
-            className="text-white/50 font-sans font-light max-w-2xl mb-10"
-            style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.05rem)", lineHeight: 1.85 }}
-          >
-            A 4-Month Executive Development Programme backed by{" "}
-            <span className="text-amber-300/80 font-normal">480+ Peer-Reviewed Studies</span>{" "}
-            that provides the neuro-physiological foundation for clarity, creativity,
-            resilience, and peak performance.
-          </motion.p>
+          <div
+            className="absolute left-0 right-0 top-0"
+            style={{
+              height: "18%",
+              background:
+                "linear-gradient(to bottom, rgba(12,6,1,0.55) 0%, transparent 100%)",
+            }}
+          />
 
-          {/* CTAs */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.15, ease: "easeOut" }}
-          >
-            <motion.div
-              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-sans font-medium text-sm tracking-wide overflow-hidden bg-primary text-white"
-             
-                onClick={openConsultationDrawer}
-
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <motion.span
-                className="absolute inset-0 rounded-full"
-                style={{
-                  opacity: 0,
-                }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.25 }}
-              />
-              <span className="relative z-10">Book the Free Intro Talk</span>
-              <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </motion.div>
-
-            <motion.button
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/18 bg-white/5 backdrop-blur-sm font-sans font-light text-sm tracking-wide text-white/75 hover:border-white/35 hover:bg-white/10 transition-all duration-300"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() =>
-                document.getElementById("science")?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Read the Science
-              <span className="text-white/35">↓</span>
-            </motion.button>
-          </motion.div>
-
-          {/* Trust strip */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
-          >
-            {TRUST_ITEMS.map((item, i) => (
-              <span key={i} className="flex items-center gap-2">
-                {i > 0 && (
-                  <span className="hidden sm:inline w-1 h-1 rounded-full bg-amber-300/50" />
-                )}
-                <span className="text-xs sm:text-sm text-white/55 font-light font-sans tracking-wide">
-                  {item}
-                </span>
-              </span>
-            ))}
-          </motion.div>
+          <div
+            className="absolute bottom-0 left-0 right-0"
+            style={{
+              height: "22%",
+              background:
+                "linear-gradient(to top, rgba(10,5,1,0.65) 0%, transparent 100%)",
+            }}
+          />
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* White wash layer */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.9 }}
-        >
-          <span className="text-white/25 text-[10px] font-sans tracking-[0.25em] uppercase">
-            Scroll
-          </span>
-          <motion.div
-            className="w-px h-10 bg-gradient-to-b from-white/35 to-transparent"
-            animate={{ scaleY: [0, 1, 0], originY: 0 }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
+          className="absolute inset-0 bg-white"
+          style={{ opacity: whiteOverlay }}
+        />
       </div>
 
-      
-    </div>
+      {/* HERO CONTENT */}
+      <div className="relative z-10">
+        {/* SECTION 1 */}
+        <div className="sticky top-0 flex h-screen select-none flex-col items-center justify-center overflow-hidden px-6 text-center pointer-events-none sm:px-10">
+          <motion.div
+            className="mx-auto flex max-w-5xl flex-col items-center text-center"
+            style={{
+              opacity: s1Opacity,
+              y: s1Y,
+            }}
+          >
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{
+                opacity: ready ? 1 : 0,
+                y: ready ? 0 : 18,
+              }}
+              transition={{
+                duration: 0.75,
+                delay: 0.25,
+                ease: "easeOut",
+              }}
+            >
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-amber-300/25 bg-amber-950/20 px-5 py-2 font-sans text-xs font-medium uppercase tracking-[0.2em] text-amber-200/80 backdrop-blur-sm sm:text-sm">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400" />
+                Maharishi Center for Leadership
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="leading-[1.08] text-white"
+              style={{
+                fontSize: "clamp(2.5rem, 6vw, 5.2rem)",
+                fontWeight: 400,
+                letterSpacing: "-0.015em",
+                textShadow:
+                  "0 2px 48px rgba(10,5,1,0.8), 0 0 12px rgba(10,5,1,0.6)",
+              }}
+              initial={{ opacity: 0, y: 36 }}
+              animate={{
+                opacity: ready ? 1 : 0,
+                y: ready ? 0 : 36,
+              }}
+              transition={{
+                duration: 1.05,
+                delay: 0.45,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              World-Class Performance
+              <br />
+              and Resilience Is Built on
+              <br />
+              <motion.span
+                className="italic text-[hsl(var(--peach))]"
+                // style={{
+                //   background:
+                //     "linear-gradient(135deg, #fee685 0%, #d97706 45%, #fde68a 100%)",
+                //   WebkitBackgroundClip: "text",
+                //   WebkitTextFillColor: "transparent",
+                //   backgroundClip: "text",
+                // }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: ready ? 1 : 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.95,
+                }}
+              >
+                World-Class Brain Functioning.
+              </motion.span>
+            </motion.h1>
+
+            <motion.div
+              className="absolute bottom-9 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: ready ? 1 : 0 }}
+              transition={{
+                duration: 1,
+                delay: 1.9,
+              }}
+            >
+              <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-white/25">
+                Scroll
+              </span>
+
+              <motion.div
+                className="h-9 w-px origin-top bg-gradient-to-b from-amber-300/35 to-transparent"
+                animate={{
+                  scaleY: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 1.9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* SECTION 2 */}
+        <div className="flex h-screen flex-col items-center justify-center px-6 sm:px-10">
+          <motion.div
+            className="mx-auto flex max-w-2xl flex-col items-center text-center"
+            style={{
+              opacity: s2Opacity,
+              y: s2Y,
+            }}
+          >
+            <motion.p
+              className="mb-5 tracking-wide "
+              style={{
+                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+                fontWeight: 400,
+                fontStyle: "italic",
+                lineHeight: 1.4,
+                color: headingColor,
+        fontFamily: "'Georgia', 'Times New Roman', serif",
+
+              }}
+            >
+              Lead at a Higher Level.
+            </motion.p>
+
+            <motion.div
+              className="mb-7 h-px w-10"
+              style={{
+                background: dividerColor,
+              }}
+            />
+
+            <motion.p
+              className="mb-11 font-sans font-light"
+              style={{
+                fontSize: "clamp(0.92rem, 1.45vw, 1.08rem)",
+                lineHeight: 1.9,
+                color: bodyColor,
+              }}
+            >
+              A 4-Month Executive Development Programme backed by{" "}
+              <motion.span
+                className="font-normal"
+                style={{
+                  color: highlightColor,
+                }}
+              >
+                480+ Peer-Reviewed Studies
+              </motion.span>{" "}
+              that provides the neuro-physiological foundation for clarity,
+              creativity, resilience, and peak performance.
+            </motion.p>
+
+            <div className="mb-11 flex flex-col items-center gap-4 sm:flex-row">
+               <button
+              type="button"
+              onClick={openConsultationDrawer}
+              className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
+              data-testid="nav-cta"
+            >
+              <span className="relative z-10">Book the Free Intro Talk</span>
+              <span className="book-pill-dot relative z-10" />
+            </button>
+
+              <motion.a
+                type="button"
+                className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[11px] uppercase font-light tracking-[0.22em] backdrop-blur-sm transition-all duration-300 text-primary border  "
+                href="#benefits"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  borderWidth: 1,
+                  borderStyle: "solid",
+                  borderColor: ghostBorder,
+                  background: ghostBg,
+                }}
+                
+              >
+                Read the Science{" "}
+                <motion.span >↓</motion.span>
+              </motion.a>
+            </div>
+
+            <div className="flex flex-wrap justify-center">
+              {TRUST_ITEMS.map((item, i) => (
+                <span key={item} className="flex items-center">
+                  <motion.span
+                    className="px-3 font-sans text-[11px] font-light tracking-wide sm:text-xs"
+                    style={{
+                      color: mutedColor,
+                    }}
+                  >
+                    {item}
+                  </motion.span>
+
+                  {i < TRUST_ITEMS.length - 1 && (
+                    <motion.span
+                      className="hidden h-3 w-px self-center sm:inline"
+                      style={{
+                        background: dividerColor,
+                      }}
+                    />
+                  )}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }
