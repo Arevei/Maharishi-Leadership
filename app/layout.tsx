@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { ConsultationDrawerProvider } from "@/app/components/consultation/ConsultationDrawerProvider";
+import { SmoothScrollProvider } from "@/app/components/providers/SmoothScrollProvider";
 import "./globals.css";
 
 const siteUrl =
@@ -87,10 +88,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} h-full bg-background`}
     >
       <body className="min-h-full flex flex-col text-foreground antialiased">
-        <ConsultationDrawerProvider>{children}</ConsultationDrawerProvider>
+        <SmoothScrollProvider>
+          <ConsultationDrawerProvider>{children}</ConsultationDrawerProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

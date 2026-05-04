@@ -96,7 +96,7 @@ export function About() {
           </motion.div>
         </div>
 
-        <div className="mt-12 rounded-[2rem] bg-background/80  shadow-[0_24px_60px_-44px_rgba(7,29,64,0.22)] ">
+        <div className="mt-12 rounded-[2rem]   shadow-[0_24px_60px_-44px_rgba(7,29,64,0.22)] ">
           <div className="flex flex-col gap-5 pb-3 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="text-[11px] font-medium uppercase tracking-[0.26em] text-[hsl(var(--peach-deep))]">
@@ -116,7 +116,7 @@ export function About() {
             {transformationPoints.map((point) => (
               <article
                 key={point.title}
-                className=" border border-border/60 bg-card/95 px-4 py-4 shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)] sm:px-5"
+                className=" border border-border/60 bg-card/95 p-2 shadow-[0_16px_34px_-30px_rgba(7,29,64,0.18)] sm:p-3 md:p-4"
               >
                 <div className="grid grid-cols-[76px_minmax(0,1fr)_auto] gap-4 sm:grid-cols-[95px_minmax(0,1fr)_auto]">
                   <div className="relative h-[100px] width-[100px] my-auto overflow-hidden  bg-muted">
@@ -129,7 +129,7 @@ export function About() {
                     />
                   </div>
 
-                  <div className="min-w-0 py-1 pr-2">
+                  <div className="min-w-0 py-1 ">
                     <h4 className=" text-primary font-bold">
                       <span className=" uppercase  text-[hsl(var(--peach-deep))] font-bold">
                         {point.index}

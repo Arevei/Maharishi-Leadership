@@ -30,11 +30,11 @@ export const footerColumns = [
     links: [
       { label: "Course Structure", href: "/#programme" },
       { label: "Curriculum Overview", href: "/#curriculum" },
-      { label: "Corporate / Team", href: getContactHref("corporate-team") },
-      {
-        label: "Individual Instruction",
-        href: getContactHref("individual-instruction"),
-      },
+      // { label: "Corporate / Team", href: getContactHref("corporate-team") },
+      // {
+      //   label: "Individual Instruction",
+      //   href: getContactHref("individual-instruction"),
+      // },
     ],
   },
   // {

@@ -29,7 +29,7 @@ const scienceCollage = [
     src: "/images/TM-science.png",
     alt: "A meditator sitting against a warm sunset sky",
     className:
-      "absolute max-[500px]:-right-[18%] max-[500px]:-right-[20%] -right-[25%] md:-right-[20%] lg:-right-[15%] xl:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
+      "absolute max-[385px]:-right-[9%] max-[427px]:-right-[15%] max-[500px]:-right-[20%] -right-[25%] md:-right-[20%] lg:-right-[15%] xl:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
   },
   {
     src: "/images/tm-1.jpg",
@@ -118,13 +118,13 @@ export function Science() {
           ))}
         </div>
 
-        <div className="grid items-center gap-12 md:gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.88fr)]">
+        <div className="grid items-center gap-6 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.88fr)]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="space-y-8 border border-primary-foreground/10 bg-primary-foreground/[0.03] p-10 md:p-16"
+            className="space-y-8 border border-primary-foreground/10 bg-primary-foreground/[0.03] p-5 md:p-10"
           >
             <div>
               
@@ -189,8 +189,8 @@ export function Science() {
             </div>
           </motion.div>
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-primary-foreground/10 bg-primary-foreground/[0.05] p-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem]">
+          <div className="relative overflow-hidden  border border-primary-foreground/10 bg-primary-foreground/[0.05] ">
+            <div className="relative aspect-[4/3] overflow-hidden ">
               <Image
                 src="/images/coherence.jpg"
                 alt="EEG coherence visual"

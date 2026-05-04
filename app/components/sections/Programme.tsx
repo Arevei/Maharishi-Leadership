@@ -120,7 +120,7 @@ export function Programme() {
                     >
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div
-                          className="rounded-full bg-[hsl(var(--sky)/0.4)] overflow-hidden"
+                          className="relative overflow-hidden rounded-full bg-[hsl(var(--sky)/0.4)]"
                           style={{
                             width: 360,
                             height: 360,
@@ -207,7 +207,8 @@ export function Programme() {
               The Maharishi Center for Leadership delivers this programme for
               senior executives, founders, high-potential managers, and entire
               C-suites who demand evidence-based, practical tools that produce
-              measurable results.
+              measurable results. Six programme objectives:
+
             </p>
             
 

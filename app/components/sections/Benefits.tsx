@@ -147,7 +147,7 @@ export function Benefits() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="max-w-3xl mb-12"
+          className="max-w-3xl "
         >
           <p className="flex items-center gap-3 text-[hsl(var(--peach-deep))] uppercase text-[11px] tracking-[0.3em] font-medium mb-6">
             <span className="w-7 h-px bg-[hsl(var(--peach-deep))]" /> The Benefits
@@ -168,7 +168,7 @@ export function Benefits() {
         </div>
 
         {/* Tabs */}
-        <div className="mb-12">
+        <div className="mt-12">
           <div className="flex items-end gap-2 sm:gap-3">
             <button
               type="button"
@@ -253,7 +253,7 @@ export function Benefits() {
               ))}
             </ul>
 
-            <div className="rounded-md bg-card p-0 md:p-10 text-center">
+            <div className="rounded-md bg-card p-2 md:p-10 text-center">
               <p className="font-serif text-2xl text-primary font-light mb-1">
                 {d.chart.title}
               </p>

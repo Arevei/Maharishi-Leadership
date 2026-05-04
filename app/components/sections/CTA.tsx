@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getContactHref } from "@/data/contact";
+import { useConsultationDrawer } from "../consultation/ConsultationDrawerProvider";
 
 export function CTA() {
+  const { openConsultationDrawer } = useConsultationDrawer();
   return (
     <section
       id="contact"
@@ -57,19 +59,21 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Link
-            href={getContactHref("intro-talk")}
-            className="px-10 py-4 rounded-full bg-[hsl(var(--cream))] text-primary text-sm uppercase tracking-[0.2em] font-medium hover:bg-[hsl(var(--sky))] transition-colors w-full sm:w-auto text-center"
-            data-testid="cta-primary"
-          >
-            Book a free intro talk
-          </Link>
-          <Link
+          <button
+              type="button"
+              onClick={openConsultationDrawer}
+              className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border  px-10 py-4 text-sm font-semibold uppercase bg-white text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
+              data-testid="nav-cta"
+            >
+              <span className="relative z-10">Book the Free Intro Talk</span>
+              <span className="book-pill-dot relative z-10" />
+            </button>
+          {/* <Link
             href={getContactHref("corporate-team")}
             className="px-10 py-4 rounded-full border border-primary-foreground/30 text-primary-foreground/80 text-sm uppercase tracking-[0.2em] font-medium hover:border-[hsl(var(--peach))] hover:text-[hsl(var(--peach))] transition-colors w-full sm:w-auto text-center"
           >
             Bring this to my organisation
-          </Link>
+          </Link> */}
         </motion.div>
 
         <motion.p

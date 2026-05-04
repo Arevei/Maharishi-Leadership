@@ -21,12 +21,11 @@ const TRUST_ITEMS = [
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const blurLayerRef = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
+  const maskRafRef = useRef<number | null>(null);
+  const pendingMaskRef = useRef<string>("");
+  const appliedMaskRef = useRef<string>("");
+  const [ready] = useState(true);
   const { openConsultationDrawer } = useConsultationDrawer();
-
-  useEffect(() => {
-    setReady(true);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -45,20 +44,33 @@ export default function Hero() {
   useMotionValueEvent(clearPct, "change", (v) => {
     if (!blurLayerRef.current) return;
 
-    const edge = blurEdgePct.get();
+    const roundedV = Math.round(v * 2) / 2;
+    const roundedEdge = Math.round(blurEdgePct.get() * 2) / 2;
 
-    const mask = `radial-gradient(ellipse ${v}% ${
-      v * 0.88
+    const mask = `radial-gradient(ellipse ${roundedV}% ${
+      roundedV * 0.88
     }% at 50% 56%, transparent 0%, transparent ${
-      v * 0.95
-    }%, rgba(0,0,0,0.55) ${edge}%, black 100%)`;
+      roundedV * 0.95
+    }%, rgba(0,0,0,0.55) ${roundedEdge}%, black 100%)`;
 
-    blurLayerRef.current.style.maskImage = mask;
-    (
-      blurLayerRef.current.style as CSSStyleDeclaration & {
-        webkitMaskImage: string;
+    pendingMaskRef.current = mask;
+    if (maskRafRef.current !== null) return;
+
+    maskRafRef.current = window.requestAnimationFrame(() => {
+      maskRafRef.current = null;
+      const nextMask = pendingMaskRef.current;
+      if (!blurLayerRef.current || !nextMask || appliedMaskRef.current === nextMask) {
+        return;
       }
-    ).webkitMaskImage = mask;
+
+      blurLayerRef.current.style.maskImage = nextMask;
+      (
+        blurLayerRef.current.style as CSSStyleDeclaration & {
+          webkitMaskImage: string;
+        }
+      ).webkitMaskImage = nextMask;
+      appliedMaskRef.current = nextMask;
+    });
   });
 
   useEffect(() => {
@@ -73,6 +85,15 @@ export default function Hero() {
         webkitMaskImage: string;
       }
     ).webkitMaskImage = mask;
+    appliedMaskRef.current = mask;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (maskRafRef.current !== null) {
+        window.cancelAnimationFrame(maskRafRef.current);
+      }
+    };
   }, []);
 
   // Background overlays
@@ -120,7 +141,6 @@ export default function Hero() {
   const gb_r = useTransform(lightMode, [0, 1], [255, 15]);
   const gb_g = useTransform(lightMode, [0, 1], [255, 44]);
   const gb_b = useTransform(lightMode, [0, 1], [255, 77]);
-  const ghostColor = useMotionTemplate`rgba(${gb_r},${gb_g},${gb_b},0.75)`;
   const ghostBorder = useMotionTemplate`rgba(${gb_r},${gb_g},${gb_b},0.28)`;
 
   const ghostBg = useTransform(
@@ -152,7 +172,9 @@ export default function Hero() {
           style={{
             backgroundImage: "url(/images/hero-meditation-tree.png)",
             filter: "blur(26px)",
-            transform: "scale(1.06)",
+            transform: "translateZ(0) scale(1.06)",
+            willChange: "mask-image, transform",
+            backfaceVisibility: "hidden",
           }}
         />
 
