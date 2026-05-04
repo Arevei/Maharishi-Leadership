@@ -286,7 +286,7 @@ export default function Hero() {
               and Resilience Is Built on
               <br />
               <motion.span
-                className="italic text-[hsl(var(--peach))]"
+                className="italic text-white"
                 // style={{
                 //   background:
                 //     "linear-gradient(135deg, #fee685 0%, #d97706 45%, #fde68a 100%)",
@@ -306,7 +306,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.div
-              className="absolute bottom-9 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
+              className="absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: ready ? 1 : 0 }}
               transition={{
@@ -314,12 +314,12 @@ export default function Hero() {
                 delay: 1.9,
               }}
             >
-              <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-white/25">
+              <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-primary">
                 Scroll
               </span>
 
               <motion.div
-                className="h-9 w-px origin-top bg-gradient-to-b from-amber-300/35 to-transparent"
+                className="h-9 w-px origin-top bg-gradient-to-b from-primary/35 to-transparent"
                 animate={{
                   scaleY: [0, 1, 0],
                 }}
