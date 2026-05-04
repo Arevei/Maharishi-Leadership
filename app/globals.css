@@ -83,6 +83,7 @@
   }
 
   html {
+    position: relative;
     scroll-behavior: smooth;
     background-color: hsl(var(--background));
   }

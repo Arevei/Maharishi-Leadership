@@ -58,9 +58,9 @@ export function Programme() {
               Structure
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-4">
-              Four months.{" "}
+              Four Months.{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
-                Transformation unlocked.
+                Transformation Unlocked.
               </em>
             </h2>
             <p className="text-sm uppercase tracking-[0.2em] text-primary/55 font-medium mb-12">
@@ -145,7 +145,7 @@ export function Programme() {
                         />
                       </div>
           
-                      <div className="relative inset-0 flex flex-col items-center justify-center text-center z-10 overflow-hidden">
+                      <div className="absolute inset-0 z-10 overflow-hidden">
                         
                          <Image
                                          src="/images/tm-transfromation.webp"

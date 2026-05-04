@@ -399,7 +399,7 @@ export default function Hero() {
               <motion.a
                 type="button"
                 className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[11px] uppercase font-light tracking-[0.22em] backdrop-blur-sm transition-all duration-300 text-primary border  "
-                href="#benefits"
+                href="#science"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 style={{

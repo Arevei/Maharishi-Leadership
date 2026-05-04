@@ -95,9 +95,9 @@ export function Curriculum() {
             The Curriculum
           </p>
           <h2 className="font-serif text-4xl font-light leading-[1.08] text-primary md:text-6xl">
-            What you will learn{" "}
+            What you will Learn{" "}
             <em className="italic text-[hsl(var(--peach-deep))]">
-              & master:
+              & Master:
             </em>
           </h2>
           <p className="mt-6 max-w-3xl text-base font-light leading-[1.9] text-primary/62 md:text-lg">

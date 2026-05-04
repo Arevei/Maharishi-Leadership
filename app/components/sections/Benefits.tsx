@@ -153,15 +153,15 @@ export function Benefits() {
             <span className="w-7 h-px bg-[hsl(var(--peach-deep))]" /> The Benefits
           </p>
           <h2 className="font-serif text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-8">
-            Measurable change.{" "}
+            Measurable Change.{" "}
             <em className="italic text-[hsl(var(--peach-deep))]">
-              For each leader, every team, and the organisation as a whole.
+              For Each Leader, Every Team, and the Organisation as a Whole.
             </em>
           </h2>
           <p className="text-lg text-primary/60 leading-[1.85] font-light">
             Decades of randomised controlled studies show TM produces consistent,
             replicable benefits across every dimension that matters for
-            leadership — from individual cognition to organisational culture to
+            leadership : from individual cognition to organisational culture to
             cardiovascular health.
           </p>
         </motion.div>

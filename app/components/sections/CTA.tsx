@@ -38,7 +38,7 @@ export function CTA() {
           className="font-serif text-4xl md:text-6xl lg:text-[4.75rem] leading-[1.08] font-light mb-8"
         >
           Start with{" "}
-          <em className="italic text-[hsl(var(--peach))]">a conversation.</em>
+          <em className="italic text-[hsl(var(--peach))]">a Conversation.</em>
         </motion.h2>
 
         <motion.p
@@ -83,7 +83,7 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.5 }}
           className="mt-10 text-[11px] uppercase tracking-[0.25em] text-primary-foreground/45"
         >
-          In partnership with CII&nbsp;&nbsp;&middot;&nbsp;&nbsp;Trusted by
+          &nbsp;&nbsp;&middot;&nbsp;&nbsp;Trusted by
           leaders at Google, IBM, Bridgewater, Tata
         </motion.p>
       </div>

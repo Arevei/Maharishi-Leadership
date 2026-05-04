@@ -75,8 +75,8 @@ export function Testimonials() {
             the Field
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.05] font-light">
-            What <em className="italic text-[hsl(var(--peach))]">leaders</em>{" "}
-            say after the practice has settled in.
+            What <em className="italic text-[hsl(var(--peach))]">Leaders</em>{" "}
+            Say After the Practice has Settled In.
           </h2>
         </motion.div>
 
@@ -88,7 +88,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="bg-primary p-10 transition-colors hover:bg-[hsl(var(--peach)/0.08)]"
+              className="bg-primary p-5 md:p-10 transition-colors hover:bg-[hsl(var(--peach)/0.08)]"
             >
               <div className="mb-8 flex h-14 w-32 items-center justify-center rounded-2xl bg-white px-4 shadow-[0_20px_36px_-28px_rgba(255,255,255,0.6)]">
                 <Image
@@ -99,18 +99,26 @@ export function Testimonials() {
                   className="h-auto max-h-8 w-auto max-w-full object-contain"
                 />
               </div>
-              <div className="font-serif text-6xl text-[hsl(var(--peach))] leading-none mb-2">
+              <div className="">
+              <span className="font-serif text-xl sm:text-2xl md:text-3xl text-[hsl(var(--peach))] leading-none mb-2">
                 &ldquo;
-              </div>
-              <p className="font-serif text-lg sm:text-xl md:text-2xl italic font-light leading-[1.5] text-primary-foreground mb-8">
+              </span>
+              <span className="font-serif text-lg sm:text-xl md:text-2xl italic font-light leading-[1.5] text-primary-foreground mb-8">
                 {quote.text}
-              </p>
+              </span>
+              <span className="font-serif text-xl sm:text-2xl md:text-3xl text-[hsl(var(--peach))] leading-none mb-2">
+                &rdquo;
+              </span>
+              </div>
+
+              <div className="mt-2 sm:mt-4 md:mt-6">
               <p className="text-[12px] uppercase tracking-[0.15em] text-[hsl(var(--peach))] font-medium">
                 {quote.name}
               </p>
               <p className="text-[12px] text-primary-foreground/45 mt-1">
                 {quote.role}
               </p>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -46,9 +46,9 @@ export function About() {
               The Programme
             </p>
             <h2 className=" font-serif text-4xl leading-[1.03] font-light text-primary sm:text-5xl xl:text-6xl">
-              One effortless practice.{" "}
+              One Effortless Practice.{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
-                A lifetime of benefits.
+                A Lifetime of Benefits.
               </em>
             </h2>
 

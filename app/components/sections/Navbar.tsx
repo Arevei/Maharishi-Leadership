@@ -42,6 +42,7 @@ export function Navbar() {
               alt="Maharishi Center for Leadership tree-of-life mark"
               width={44}
               height={44}
+              loading="eager"
               className="h-11 w-11 shrink-0 rounded-full object-cover shadow-sm"
             />
             <span className="font-serif text-xl tracking-tight">

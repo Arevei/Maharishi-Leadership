@@ -41,9 +41,9 @@ export function Footer() {
               >
                 {contactEmail}
               </a>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.25em] text-[hsl(var(--peach))]/80 font-medium">
+              {/* <p className="mt-3 text-[11px] uppercase tracking-[0.25em] text-[hsl(var(--peach))]/80 font-medium">
                 In Partnership with CII
-              </p>
+              </p> */}
             </div>
           </div>
 

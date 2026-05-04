@@ -68,8 +68,8 @@ export function Science() {
               <span className="h-px w-7 bg-[hsl(var(--peach))]" /> The Science
             </p>
             <h2 className="mb-8 font-serif text-4xl font-light leading-[1.05] md:text-6xl">
-              50 years of continuous clinical{" "}
-              <em className="italic text-[hsl(var(--peach))]">research.</em>
+              50 Years of Continuous Clinical{" "}
+              <em className="italic text-[hsl(var(--peach))]">Research.</em>
             </h2>
             <p className="text-lg font-light leading-[1.85] text-primary-foreground/60">
               Published across the world&apos;s leading journals of cardiology,
@@ -145,7 +145,7 @@ export function Science() {
                 great leadership.
               </p>
                <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
-                EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex — the neurophysiological signature of integrated, high-functioning mental performance.
+                EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex : the neurophysiological signature of integrated, high-functioning mental performance.
               </p>
               <p  className=" flex mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">For a full overview of the research: <Link href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"><ExternalLink/></Link></p>
             </div>
