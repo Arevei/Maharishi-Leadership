@@ -145,16 +145,7 @@ export function Programme() {
                         />
                       </div>
           
-                      <div className="absolute inset-0 z-10 overflow-hidden">
-                        
-                         <Image
-                                         src="/images/tm-transfromation.webp"
-                                         alt=""
-                                         fill
-                                         sizes="400px"
-                                         className="object-cover"
-                                       />
-                      </div>
+                     
           
                       {cards.map((card, index) => (
                         <motion.div
