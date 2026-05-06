@@ -60,7 +60,7 @@ export function Programme() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl text-primary leading-[1.05] font-light mb-4">
               Four Months.{" "}
               <em className="italic text-[hsl(var(--peach-deep))]">
-                Transformation Unlocked.
+                Measurably Sharper.
               </em>
             </h2>
             <p className="text-sm uppercase tracking-[0.2em] text-primary/55 font-medium mb-12">
@@ -198,7 +198,7 @@ export function Programme() {
               The Maharishi Center for Leadership delivers this programme for
               senior executives, founders, high-potential managers, and entire
               C-suites who demand evidence-based, practical tools that produce
-              measurable results. Six programme objectives:
+              measurable results. The programme delivers six outcomes:
 
             </p>
             

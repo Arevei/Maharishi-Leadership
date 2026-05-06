@@ -64,7 +64,7 @@ const data: Record<
       },
       {
         name: "Stronger leadership at every level",
-        desc: "Practised by leaders at Google, IBM, Bridgewater, Tata, Toyota, and JetSynthesys — and by their teams beneath them.",
+        desc: "Practised by leaders at Google, IBM, Bridgewater, Tata, Toyota, and JetSynthesys - and by their teams.",
       },
       {
         name: "Reduced turnover",
@@ -127,7 +127,6 @@ export function Benefits() {
     activeTabIndex < tabs.length - 1 ? tabs[activeTabIndex + 1] : null;
 
   useEffect(() => {
-    const activeButton = tabRefs.current[tab];
     // activeButton?.scrollIntoView({
     //   behavior: "smooth",
     //   inline: "center",
@@ -136,11 +135,11 @@ export function Benefits() {
   }, [tab]);
 
   return (
-    <section id="benefits" className="bg-background py-24 md:py-36">
+    <section id="benefits" className="bg-background pt-24 pb-14 md:pt-32 md:pb-20">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-12">
         <div>
-            <Image src="/images/benefits.jpg" width={600} height={400} alt="EEG coherence" />
+            <Image src="/images/executive.png" width={600} height={400} alt="Executive leadership setting" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -291,3 +290,4 @@ export function Benefits() {
     </section>
   );
 }
+

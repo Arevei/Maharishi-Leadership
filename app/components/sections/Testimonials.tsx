@@ -71,8 +71,7 @@ export function Testimonials() {
           className="max-w-3xl mb-16"
         >
           <p className="flex items-center gap-3 text-[hsl(var(--peach))] uppercase text-[11px] tracking-[0.3em] font-medium mb-6">
-            <span className="w-7 h-px bg-[hsl(var(--peach))]" /> Voices from
-            the Field
+            <span className="w-7 h-px bg-[hsl(var(--peach))]" /> Voices
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.05] font-light">
             What <em className="italic text-[hsl(var(--peach))]">Leaders</em>{" "}

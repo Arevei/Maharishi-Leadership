@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Link2 } from "lucide-react";
-import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 const stats = [
   { num: "480+", label: "Peer-reviewed studies on TM" },
   { num: "250+", label: "Universities and medical institutions" },
-  { num: "50 yr", label: "Of continuous clinical research" },
+  { num: "5 Decades", label: "Of continuous clinical research" },
   { num: "50%", label: "Reduction in healthcare utilisation costs" },
   { num: "48%", label: "Lower risk of heart attack, stroke & death" },
   {
@@ -22,21 +21,6 @@ const waves = [
   { label: "Parietal", active: 4, total: 5, stat: "+64% coherence" },
   { label: "Occipital", active: 3, total: 5, stat: "+45% coherence" },
   { label: "Temporal", active: 2, total: 5, stat: "+38% coherence" },
-];
-
-const scienceCollage = [
-  {
-    src: "/images/TM-science.png",
-    alt: "A meditator sitting against a warm sunset sky",
-    className:
-      "absolute max-[385px]:-right-[9%] max-[427px]:-right-[15%] max-[500px]:-right-[20%] -right-[25%] md:-right-[20%] lg:-right-[15%] xl:-right-[10%]  top-0 h-72 w-72 md:h-80 md:w-80 rounded-full border-[6px] border-[hsl(var(--primary))] ",
-  },
-  {
-    src: "/images/tm-1.jpg",
-    alt: "A practitioner meditating at sunrise",
-    className:
-      "absolute max-[427px]:left-[2%] max-[500px]:left-[5%] left-[10%] md:left-[7%] lg:left-[10%] xl:left-[5%] bottom-8 h-36 w-36 md:h-44 md:w-44 rounded-full border-[6px] border-[hsl(var(--primary))]",
-  },
 ];
 
 export function Science() {
@@ -56,7 +40,7 @@ export function Science() {
       />
 
       <div className="container relative mx-auto px-6 md:px-12">
-        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_26rem]">
+        <div className="grid items-center gap-14 lg:grid-cols-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,24 +62,6 @@ export function Science() {
             </p>
           </motion.div>
 
-          <div className="relative mx-auto h-[430px] w-full max-w-[430px] mx-auto">
-            
-
-            {scienceCollage.map((item) => (
-              <div
-                key={item.src}
-                className={`${item.className} relative overflow-hidden shadow-[0_18px_44px_-24px_rgba(0,0,0,0.7)]`}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 26rem, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="mb-20 mt-16 grid grid-cols-2 gap-px bg-primary-foreground/[0.08] md:grid-cols-3">
@@ -147,7 +113,17 @@ export function Science() {
                <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
                 EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex : the neurophysiological signature of integrated, high-functioning mental performance.
               </p>
-              <p  className=" flex mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">For a full overview of the research: <Link href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"><ExternalLink/></Link></p>
+              <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
+                <Link
+                  href="https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf"
+                  className="inline-flex items-center gap-2 text-[hsl(var(--peach))] hover:text-primary-foreground"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Read the full research overview
+                  <ExternalLink className="h-4 w-4" />
+                </Link>
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -189,18 +165,6 @@ export function Science() {
             </div>
           </motion.div>
 
-          <div className="relative overflow-hidden  border border-primary-foreground/10 bg-primary-foreground/[0.05] ">
-            <div className="relative aspect-[4/3] overflow-hidden ">
-              <Image
-                src="/images/coherence.jpg"
-                alt="EEG coherence visual"
-                fill
-                sizes="(min-width: 1024px) 42rem, 100vw"
-                className="object-cover"
-              />
-             
-            </div>
-          </div>
         </div>
       </div>
     </section>

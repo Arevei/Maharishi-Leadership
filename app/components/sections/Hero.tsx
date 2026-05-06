@@ -152,7 +152,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative isolate h-[200vh] overflow-hidden"
+      className="relative isolate h-[185vh] overflow-hidden"
       
     >
       {/* HERO BACKGROUND - only inside hero, not fixed globally */}
@@ -234,7 +234,7 @@ export default function Hero() {
       {/* HERO CONTENT */}
       <div className="relative z-10">
         {/* SECTION 1 */}
-        <div className="sticky top-0 flex h-screen select-none flex-col items-center justify-center overflow-hidden px-6 text-center pointer-events-none sm:px-10">
+        <div className="sticky top-0 flex h-screen select-none flex-col items-center justify-start overflow-hidden px-6 pt-24 text-center pointer-events-none sm:px-10 sm:pt-20">
           <motion.div
             className="mx-auto flex max-w-5xl flex-col items-center text-center"
             style={{
@@ -243,7 +243,7 @@ export default function Hero() {
             }}
           >
             <motion.div
-              className="mb-8"
+              className="mb-6"
               initial={{ opacity: 0, y: 18 }}
               animate={{
                 opacity: ready ? 1 : 0,
@@ -385,14 +385,14 @@ export default function Hero() {
               creativity, resilience, and peak performance.
             </motion.p>
 
-            <div className="mb-11 flex flex-col items-center gap-4 sm:flex-row">
+            <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
                <button
               type="button"
               onClick={openConsultationDrawer}
               className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >
-              <span className="relative z-10">Book the Free Intro Talk</span>
+              <span className="relative z-10">Book a Complimentary Intro Talk</span>
               <span className="book-pill-dot relative z-10" />
             </button>
 
@@ -419,7 +419,7 @@ export default function Hero() {
               {TRUST_ITEMS.map((item, i) => (
                 <span key={item} className="flex items-center">
                   <motion.span
-                    className="px-3 font-sans text-[11px] font-light tracking-wide sm:text-xs"
+                    className="px-3 font-sans text-xs font-light tracking-wide sm:text-sm"
                     style={{
                       color: mutedColor,
                     }}

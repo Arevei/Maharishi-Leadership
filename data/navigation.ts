@@ -1,5 +1,3 @@
-import { getContactHref } from "@/data/contact";
-
 export type SiteLink = {
   label: string;
   href: string;
@@ -21,7 +19,7 @@ export const footerColumns = [
     links: [
       { label: "The Premise", href: "/#about" },
       { label: "The Science", href: "/#science" },
-      { label: "Benefits Page", href: "/#benefits" },
+      { label: "The Benefits", href: "/#benefits" },
       { label: "Voices", href: "/#testimonials" },
     ],
   },

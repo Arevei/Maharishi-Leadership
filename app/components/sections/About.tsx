@@ -9,21 +9,21 @@ const transformationPoints = [
   {
     index: "01",
     title: "Clarity in Decision-Making",
-    desc: "The technique works because it is effortless.",
+    desc: "Frontal brain coherence restores the mind's ability to see clearly under pressure.",
     image: "/images/decision-making.avif",
     reference: "https://doi.org/10.1016/j.ijpsycho.2008.09.007",
   },
   {
     index: "02",
     title: "Emotional Intelligence",
-    desc: "Stay composed when stakes are high.",
+    desc: "Deep rest dissolves reactivity — what remains is steadiness, empathy, and presence.",
     image: "/images/emotional-intelligence.jpg",
     reference: "https://www.thepermanentejournal.org/doi/10.7812/TPP/17-172",
   },
   {
     index: "03",
     title: "Sustained Focus",
-    desc: "Execute with consistency, not just intent.",
+    desc: "Alpha coherence across the brain sustains attention without effort or fatigue.",
     image: "/images/focus.avif",
     reference: "https://doi.org/10.1038/s41598-025-14898-w",
   },
@@ -43,7 +43,7 @@ export function About() {
           >
             <p className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[hsl(var(--peach-deep))]">
               <span className="h-px w-7 bg-[hsl(var(--peach-deep))]" />
-              The Programme
+              The Premise
             </p>
             <h2 className=" font-serif text-4xl leading-[1.03] font-light text-primary sm:text-5xl xl:text-6xl">
               One Effortless Practice.{" "}
@@ -57,7 +57,7 @@ export function About() {
                 src="/images/Headview.png"
                 width={600}
                 height={400}
-                alt="Brain coherence comparison during Transcendental Meditation"
+                alt="Neuroscience illustration of brain coherence during Transcendental Meditation"
                 className="h-auto w-full rounded-[1.35rem] object-contain"
               />
             </div>
@@ -104,12 +104,6 @@ export function About() {
               </p>
             </div>
 
-            <Link
-              href="/#curriculum"
-              className="inline-flex w-fit items-center justify-center rounded-full border border-primary px-4 py-2 text-sm font-medium uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              View Curriculum
-            </Link>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -130,13 +124,13 @@ export function About() {
                   </div>
 
                   <div className="min-w-0 py-1 ">
-                    <h4 className=" text-primary font-bold">
+                    <h4 className="text-lg text-primary font-bold">
                       <span className=" uppercase  text-[hsl(var(--peach-deep))] font-bold">
                         {point.index}
                       </span>{" "}
                       - {point.title}
                     </h4>
-                    <p className="mt-3 text-[15px]  text-primary/60">
+                    <p className="mt-3 text-base text-primary/60 leading-[1.6]">
                       {point.desc}
                     </p>
                   </div>

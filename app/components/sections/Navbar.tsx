@@ -45,16 +45,6 @@ export function Navbar() {
               loading="eager"
               className="h-11 w-11 shrink-0 rounded-full object-cover shadow-sm"
             />
-            <span className="font-serif text-xl tracking-tight">
-              Maharishi{" "}
-              <em
-                className={`not-italic ${
-                  isScrolled ? "text-primary/60" : "text-primary-foreground/70"
-                }`}
-              >
-                Leadership
-              </em>
-            </span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-9">

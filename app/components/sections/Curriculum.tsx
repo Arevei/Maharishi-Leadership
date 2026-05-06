@@ -48,10 +48,10 @@ const modules: readonly CurriculumModule[] = [
     title: "Leadership & Well-being Integration",
     subtitle:
       "Translate the practice into performance, resilience, and health.",
-    image: "/images/carriculam-3.png",
-    alt: "Executive working with a calm and focused presence",
+    image: "/images/executive.png",
+    alt: "Indian executive in a calm and composed professional setting",
     imageLabel: "Application",
-    imageClassName: "object-[center_24%]",
+    imageClassName: "object-center",
     points: [
       "Higher states of development and their link to performance",
       "Emotional intelligence, resilience, and leadership presence",
@@ -97,7 +97,7 @@ export function Curriculum() {
           <h2 className="font-serif text-4xl font-light leading-[1.08] text-primary md:text-6xl">
             What you will Learn{" "}
             <em className="italic text-[hsl(var(--peach-deep))]">
-              & Master:
+              & Master
             </em>
           </h2>
           <p className="mt-6 max-w-3xl text-base font-light leading-[1.9] text-primary/62 md:text-lg">
