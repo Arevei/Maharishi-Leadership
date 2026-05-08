@@ -31,7 +31,7 @@ const transformationPoints = [
 
 export function About() {
   return (
-    <section id="about" className="overflow-hidden bg-card py-24 md:py-36">
+    <section id="about" className="overflow-hidden bg-card py-18 md:py-30">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 xl:gap-20">
           <motion.div

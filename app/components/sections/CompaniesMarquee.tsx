@@ -30,7 +30,7 @@ export function CompaniesMarquee() {
   return (
     <section
       aria-label="Companies and institutions where TM is practiced"
-      className="text-primary-foreground overflow-hidden border-y border-primary-foreground/10 bg-white"
+      className="text-primary-foreground overflow-hidden  bg-white"
     >
       <div className="py-5 relative">
         <div

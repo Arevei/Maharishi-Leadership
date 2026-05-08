@@ -135,7 +135,7 @@ export function Benefits() {
   }, [tab]);
 
   return (
-    <section id="benefits" className="bg-background pt-24 pb-14 md:pt-32 md:pb-20">
+    <section id="benefits" className="bg-background pt-24 pb-14 py-18 md:py-30">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-12">
         <div>
