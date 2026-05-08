@@ -1,86 +1,105 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-
-const heritageLinks = [
-  {
-    label: "What is Transcendental Meditation",
-    href: "https://www.tm.org/en-gb/what-is-tm",
-  },
-  {
-    label: "Research overview (David Lynch Foundation PDF)",
-    href: "https://www.davidlynchfoundation.org/pdf/Research-on-TM.pdf",
-  },
-  {
-    label: "American Heart Association scientific statement",
-    href: "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000063",
-  },
-] as const;
 
 export function ProfoundHeritage() {
   return (
-    <section id="heritage" className="bg-card py-20 md:py-28">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="mb-5 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[hsl(var(--peach-deep))]">
-              <span className="h-px w-7 bg-[hsl(var(--peach-deep))]" />
-              Profound Heritage
-            </p>
-            <h2 className="font-serif text-4xl font-light leading-[1.08] text-primary md:text-5xl">
-              Timeless knowledge,{" "}
-              <em className="italic text-[hsl(var(--peach-deep))]">
-                validated by modern science.
-              </em>
-            </h2>
-            <p className="mt-5 max-w-2xl text-base font-light leading-[1.9] text-primary/65 md:text-lg">
-              The Maharishi tradition offers a precise and practical approach to
-              inner development. Our leadership work stands at that intersection
-              of authentic lineage and evidence-based application.
-            </p>
+    <section
+      id="about"
+      style={{
+        background: "hsl(var(--background))",
+        overflow: "hidden",
+      }}
+    >
+      <div className="max-w-5xl mx-auto px-8 py-24 sm:py-32 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] tracking-[0.22em] uppercase font-sans mb-8">
+            Our Profound Heritage
+          </span>
 
-            <div className="mt-8 space-y-3">
-              {heritageLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-full items-center justify-between rounded-full border border-border/80 bg-background px-5 py-3 text-sm text-primary transition-colors hover:border-primary/30 hover:bg-primary/5"
-                >
-                  <span>{item.label}</span>
-                  <ExternalLink className="h-4 w-4 shrink-0 text-primary/60" />
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="relative mx-auto aspect-[4/3] w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-border/70"
+          <h2
+            className="leading-[1.08] mb-6"
+            style={{
+              fontFamily: "'Georgia', serif",
+              fontSize: "clamp(2.4rem, 5vw, 4rem)",
+              fontWeight: 400,
+              color: "hsl(var(--primary))",
+              letterSpacing: "-0.01em",
+            }}
           >
-            <Image
-              src="/images/tm-1.jpg"
-              alt="Meditative stillness represented in a professional context"
-              fill
-              sizes="(min-width: 1024px) 34rem, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-          </motion.div>
-        </div>
+            Rooted in 5,000 Years
+            <span
+              className="block italic mt-2"
+              style={{ color: "hsl(var(--peach-deep))" }}
+            >
+              of Vedic Wisdom.
+            </span>
+          </h2>
+
+          <p
+            className="font-sans font-light leading-[1.9] max-w-2xl mx-auto mb-14"
+            style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.08rem)", color: "#57534e" }}
+          >
+            Transcendental Meditation was brought to the modern world in its
+            original purity by{" "}
+            <span
+              className="font-normal"
+              style={{ color: "hsl(var(--peach-deep))" }}
+            >
+              Maharishi Mahesh Yogi
+            </span>
+            ,
+            who drew upon the ancient Vedic tradition of India - one of the
+            oldest and most systematically developed bodies of knowledge on
+            human consciousness. The technique is effortless, universal, and
+            taught one-to-one, preserving an unbroken oral lineage spanning millennia.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="mx-auto mb-16"
+          style={{ maxWidth: 820 }}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden shadow-2xl"
+            style={{
+              background: "hsl(var(--primary))",
+              border: "1px solid hsl(var(--peach-deep) / 0.22)",
+              boxShadow:
+                "0 32px 80px rgba(7,29,64,0.22), 0 0 0 1px hsl(var(--peach-deep) / 0.1)",
+            }}
+          >
+            <video
+              className="w-full h-auto"
+              controls
+              preload="metadata"
+              playsInline
+            >
+              <source src="/videos/profound-heritage.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </motion.div>
       </div>
+      <style jsx>{`
+        span.inline-flex {
+          border-color: hsl(var(--peach-deep) / 0.22);
+          background: hsl(var(--sky) / 0.2);
+          color: hsl(var(--peach-deep) / 0.9);
+        }
+        p {
+          color: hsl(var(--primary) / 0.7);
+        }
+      `}</style>
     </section>
   );
 }

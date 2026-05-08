@@ -71,23 +71,11 @@ export function ContactInquiryForm({
   };
 
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.07] p-6 md:p-8 backdrop-blur-xl shadow-[0_26px_90px_-44px_rgba(0,0,0,0.85)]">
-      <div className="rounded-[1.5rem] border border-white/10 bg-black/15 px-5 py-4">
-        <p className="text-[10px] uppercase tracking-[0.22em] text-[hsl(var(--peach))] font-medium">
-          Selected inquiry
-        </p>
-        <h3 className="mt-2 font-serif text-2xl text-primary-foreground">
-          {activeInquiry.label}
-        </h3>
-        <p className="mt-2 text-sm leading-[1.75] text-primary-foreground/70">
-          {activeInquiry.description}
-        </p>
-      </div>
-
-      <form ref={formRef} onSubmit={handleSubmit} className="mt-6 space-y-5">
+    <div className="rounded-[2rem] bg-card p-6 shadow-[0_22px_60px_-40px_rgba(7,29,64,0.3)] md:p-8">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
         <div className="grid gap-5 md:grid-cols-2">
           <label className="block">
-            <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
               Name
             </span>
             <input
@@ -95,12 +83,12 @@ export function ContactInquiryForm({
               type="text"
               value={form.name}
               onChange={(event) => handleFieldChange("name", event.target.value)}
-              className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground placeholder:text-primary-foreground/30"
+              className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))] placeholder:text-primary/35"
               placeholder="Your full name"
             />
           </label>
           <label className="block">
-            <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
               Email
             </span>
             <input
@@ -108,7 +96,7 @@ export function ContactInquiryForm({
               type="email"
               value={form.email}
               onChange={(event) => handleFieldChange("email", event.target.value)}
-              className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground placeholder:text-primary-foreground/30"
+              className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))] placeholder:text-primary/35"
               placeholder="name@company.com"
             />
           </label>
@@ -116,7 +104,7 @@ export function ContactInquiryForm({
 
         <div className="grid gap-5 md:grid-cols-2">
           <label className="block">
-            <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
               Organization
             </span>
             <input
@@ -125,26 +113,26 @@ export function ContactInquiryForm({
               onChange={(event) =>
                 handleFieldChange("organization", event.target.value)
               }
-              className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground placeholder:text-primary-foreground/30"
+              className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))] placeholder:text-primary/35"
               placeholder="Company or institution"
             />
           </label>
           <label className="block">
-            <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
               Role / Title
             </span>
             <input
               type="text"
               value={form.role}
               onChange={(event) => handleFieldChange("role", event.target.value)}
-              className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground placeholder:text-primary-foreground/30"
+              className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))] placeholder:text-primary/35"
               placeholder="Founder, CHRO, VP, Manager..."
             />
           </label>
         </div>
 
         <label className="block">
-          <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+          <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
             Inquiry type
           </span>
           <select
@@ -156,7 +144,7 @@ export function ContactInquiryForm({
                 event.target.value as ContactInquiryTypeKey,
               )
             }
-            className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground"
+            className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))]"
           >
             {contactInquiryTypes.map((item) => (
               <option key={item.key} value={item.key} className="text-primary">
@@ -164,13 +152,10 @@ export function ContactInquiryForm({
               </option>
             ))}
           </select>
-          <p className="mt-2 text-sm text-primary-foreground/45">
-            {activeInquiry.responseNote}
-          </p>
         </label>
 
         <label className="block">
-          <span className="block text-[11px] uppercase tracking-[0.18em] text-primary-foreground/55 mb-2">
+          <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
             Message
           </span>
           <textarea
@@ -180,27 +165,10 @@ export function ContactInquiryForm({
             onChange={(event) =>
               handleFieldChange("message", event.target.value)
             }
-            className="w-full rounded-[1rem] border border-white/12 bg-white/8 px-4 py-3.5 text-primary-foreground placeholder:text-primary-foreground/30"
+            className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))] placeholder:text-primary/35"
             placeholder={activeInquiry.prompt}
           />
         </label>
-
-        <div className="rounded-[1.35rem] border border-white/10 bg-black/15 px-4 py-4">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-[hsl(var(--peach))]">
-            Email-first flow
-          </p>
-          <p className="mt-2 text-sm leading-[1.75] text-primary-foreground/72">
-            Submitting this form opens your email app with everything structured
-            for you. If your email client does not open, write to{" "}
-            <a
-              href={`mailto:${contactEmail}`}
-              className="text-[hsl(var(--peach))] hover:text-primary-foreground"
-            >
-              {contactEmail}
-            </a>
-            .
-          </p>
-        </div>
 
         <button
           type="submit"

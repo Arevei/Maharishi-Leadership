@@ -18,11 +18,20 @@ export function Footer() {
                 className="w-12 h-12 rounded-full object-cover shrink-0"
               />
               <span className="font-serif text-xl">
-                Maharishi Center for Leadership
+                Maharishi Center 
+                {" "}
+              <em
+                className={`not-italic text-primary/60`}
+              >
+                for Leadership
+              </em>
               </span>
             </div>
-            <p className="text-sm text-white leading-[1.8] max-w-sm">
-              A Brain-Based Approach to Peak Performance and Resilience.
+            <p className="font-semibold text-white leading-[1.8] max-w-sm">
+              A Brain-Based Approach 
+            </p>
+            <p className="font-semibold text-white leading-[1.8] max-w-sm">
+               to Peak Performance and Resilience.
             </p>
             <p className="text-sm text-primary-foreground/45 leading-[1.8] max-w-sm">
                A four-month executive development programme backed by 480+ peer-reviewed studies over five decades.
