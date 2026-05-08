@@ -17,14 +17,12 @@ const companies = [
   { "name": "Instagram", "logo": "instagram.png" },
   { "name": "Superhuman", "logo": "Superhuman.png" },
   { "name": "Salesforce", "logo": "SFDO.webp" },
-  { "name": "Stanford University", "logo": "Stanford.png" },
   { "name": "Piramal Capital", "logo": "Piramal.jpg" },
   { "name": "Wipro Infotech", "logo": "wipro.png" },
   { "name": "Tata Tea", "logo": "tatatea.jpg" },
   { "name": "Taj Hotels", "logo": "taj.jpg" },
   { "name": "JetSynthesys", "logo": "JetSynthesys.jpg" },
   { "name": "Eveready", "logo": "EVEREADY.jpg" },
-  { "name": "Clorox", "logo": "Clorox.png" }
 ]
 export function CompaniesMarquee() {
   const marqueeCompanies = [...companies, ...companies];
@@ -32,7 +30,7 @@ export function CompaniesMarquee() {
   return (
     <section
       aria-label="Companies and institutions where TM is practiced"
-      className="text-primary-foreground overflow-hidden border-y border-primary-foreground/10"
+      className="text-primary-foreground overflow-hidden border-y border-primary-foreground/10 bg-white"
     >
       <div className="py-5 relative">
         <div

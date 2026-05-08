@@ -152,7 +152,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative isolate h-[185vh] overflow-hidden"
+      className="relative mb-10 -top-8 isolate h-[185vh] overflow-hidden"
       
     >
       {/* HERO BACKGROUND - only inside hero, not fixed globally */}
@@ -162,15 +162,17 @@ export default function Hero() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url(/images/hero-meditation-tree.png)",
+            backgroundPosition: "center 78%",
           }}
         />
 
         {/* Blurred copy */}
         <div
           ref={blurLayerRef}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute  inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url(/images/hero-meditation-tree.png)",
+            backgroundPosition: "center 78%",
             filter: "blur(26px)",
             transform: "translateZ(0) scale(1.06)",
             willChange: "mask-image, transform",
@@ -232,7 +234,7 @@ export default function Hero() {
       </div>
 
       {/* HERO CONTENT */}
-      <div className="relative z-10">
+      <div className="relative  top-[8vh] z-10">
         {/* SECTION 1 */}
         <div className="sticky top-0 flex h-screen select-none flex-col items-center justify-start overflow-hidden px-6 pt-24 text-center pointer-events-none sm:px-10 sm:pt-20">
           <motion.div
@@ -262,7 +264,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              className="leading-[1.08] text-white"
+              className="leading-[1.08] text-white "
               style={{
                 fontSize: "clamp(2.5rem, 6vw, 5.2rem)",
                 fontWeight: 400,
@@ -283,7 +285,7 @@ export default function Hero() {
             >
               World-Class Performance
               <br />
-              and Resilience Is Built on
+              Is Built on
               <br />
               <motion.span
                 className="italic text-white"
@@ -392,7 +394,7 @@ export default function Hero() {
               className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >
-              <span className="relative z-10">Book a Complimentary Intro Talk</span>
+              <span className="relative z-10">Book an Intro Talk</span>
               <span className="book-pill-dot relative z-10" />
             </button>
 

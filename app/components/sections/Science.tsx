@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 const stats = [
   { num: "480+", label: "Peer-reviewed studies on TM" },
@@ -110,6 +111,10 @@ export function Science() {
                 emotional resilience.&rdquo; This is the neural foundation of
                 great leadership.
               </p>
+              <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
+                TM activates the hidden reserves of the brain, making higher
+                order thinking more available under pressure.
+              </p>
                <p className="mb-4 text-[15px] font-light leading-[1.85] text-primary-foreground/55">
                 EEG research shows TM uniquely produces high-amplitude alpha coherence across the frontal cortex : the neurophysiological signature of integrated, high-functioning mental performance.
               </p>
@@ -165,6 +170,18 @@ export function Science() {
             </div>
           </motion.div>
 
+          <div className="relative overflow-hidden  border border-primary-foreground/10 bg-primary-foreground/[0.05] ">
+            <div className="relative aspect-[4/3] overflow-hidden ">
+              <Image
+                src="/images/coherence.jpg"
+                alt="EEG coherence visual"
+                fill
+                sizes="(min-width: 1024px) 42rem, 100vw"
+                className="object-cover"
+              />
+             
+            </div>
+            </div>
         </div>
       </div>
     </section>

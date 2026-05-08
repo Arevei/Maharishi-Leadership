@@ -8,7 +8,7 @@ export function CTA() {
   return (
     <section
       id="contact"
-      className="bg-primary text-primary-foreground py-32 md:py-44 text-center relative overflow-hidden"
+      className="bg-primary text-primary-foreground py-26 md:py-36 text-center relative overflow-hidden"
     >
       <div
         aria-hidden
@@ -46,8 +46,8 @@ export function CTA() {
           transition={{ duration: 0.9, delay: 0.15 }}
           className="text-lg text-primary-foreground/60 max-w-2xl mx-auto leading-[1.85] font-light mb-14"
         >
-          A 30-minute introductory talk is the simplest way to understand how
-          the programme is right for you, your team, or your organisation.
+          The simplest way to understand how the programme works for you, your
+          team, or your organisation is to book a conversation with an expert.
         </motion.p>
 
         <motion.div
@@ -63,7 +63,7 @@ export function CTA() {
               className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border  px-10 py-4 text-sm font-semibold uppercase bg-white text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >
-              <span className="relative z-10">Book a Complimentary Intro Talk</span>
+              <span className="relative z-10">Book a Intro Talk</span>
               <span className="book-pill-dot relative z-10" />
             </button>
           {/* <Link

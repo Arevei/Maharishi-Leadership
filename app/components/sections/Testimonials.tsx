@@ -42,7 +42,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-primary py-24 text-primary-foreground md:py-36"
+      className="relative overflow-hidden bg-primary py-18 md:py-30 text-primary-foreground "
     >
       <div
         aria-hidden

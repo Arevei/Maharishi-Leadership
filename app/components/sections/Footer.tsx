@@ -18,15 +18,14 @@ export function Footer() {
                 className="w-12 h-12 rounded-full object-cover shrink-0"
               />
               <span className="font-serif text-xl">
-                Maharishi{" "}
-                <em className="not-italic text-[hsl(var(--peach))]">
-                  Leadership
-                </em>
+                Maharishi Center for Leadership
               </span>
             </div>
+            <p className="text-sm text-white leading-[1.8] max-w-sm">
+              A Brain-Based Approach to Peak Performance and Resilience.
+            </p>
             <p className="text-sm text-primary-foreground/45 leading-[1.8] max-w-sm">
-              Maharishi Center for Leadership - A Brain-Based Approach to Peak Performance and Resilience. A four-month executive development programme backed by 480+ peer-reviewed studies over five decades.
-
+               A four-month executive development programme backed by 480+ peer-reviewed studies over five decades.
             </p>
             <div className="mt-8">
               <p className="text-[11px] uppercase tracking-[0.3em] text-primary-foreground/35 mb-2">

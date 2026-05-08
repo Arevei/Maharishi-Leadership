@@ -2,6 +2,7 @@
 import { Navbar } from "./components/sections/Navbar";
 import { CompaniesMarquee } from "./components/sections/CompaniesMarquee";
 import { About } from "./components/sections/About";
+import { ProfoundHeritage } from "./components/sections/ProfoundHeritage";
 import { Science } from "./components/sections/Science";
 import { Benefits } from "./components/sections/Benefits";
 import { Programme } from "./components/sections/Programme";
@@ -19,6 +20,7 @@ export default function Home() {
         <HeroSection />
         <CompaniesMarquee />
         <About />
+        {/* <ProfoundHeritage /> */}
         <Science />
         <Benefits />
         <Programme />

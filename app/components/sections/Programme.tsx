@@ -44,7 +44,7 @@ const cards = [
 ];
 export function Programme() {
   return (
-    <section id="programme" className="bg-card py-24 md:py-36">
+    <section id="programme" className="bg-card py-18 md:py-30">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <motion.div

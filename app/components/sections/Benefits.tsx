@@ -26,7 +26,7 @@ const data: Record<
   mental: {
     items: [
       {
-        name: "Faster, clearer decisions",
+        name: "Clearer Thinking, Better Decisions",
         desc: "Statistically significant gains across all eight leadership dimensions after just 12 weeks of TM practice (Valosek et al., 2018).",
       },
       {
@@ -139,7 +139,7 @@ export function Benefits() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-12">
         <div>
-            <Image src="/images/executive.png" width={600} height={400} alt="Executive leadership setting" />
+            <Image src="/images/benefits-boardroom.png" width={600} height={400} alt="Executive in a boardroom with team members in the background" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

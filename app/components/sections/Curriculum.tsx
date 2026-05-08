@@ -48,7 +48,7 @@ const modules: readonly CurriculumModule[] = [
     title: "Leadership & Well-being Integration",
     subtitle:
       "Translate the practice into performance, resilience, and health.",
-    image: "/images/executive.png",
+    image: "/images/carriculam-3.png",
     alt: "Indian executive in a calm and composed professional setting",
     imageLabel: "Application",
     imageClassName: "object-center",
@@ -71,7 +71,7 @@ export function Curriculum() {
   return (
     <section
       id="curriculum"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,hsl(var(--sky)/0.22)_0%,hsl(var(--background))_100%)] pt-24 md:pt-36"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,hsl(var(--sky)/0.22)_0%,hsl(var(--background))_100%)] py-18 md:py-30"
     >
       <div
         aria-hidden
