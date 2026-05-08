@@ -19,7 +19,7 @@ const modules: readonly CurriculumModule[] = [
     step: "01",
     title: "The TM Technique & Daily Practice",
     subtitle: "Establish the practice correctly from day one.",
-    image: "/images/carriculam-1.png",
+    image: "/images/Pillar-1-Maharishi.png",
     alt: "Person meditating at sunrise",
     imageLabel: "Technique",
     points: [
@@ -33,7 +33,7 @@ const modules: readonly CurriculumModule[] = [
     step: "02",
     title: "Neuroscience of Peak Performance",
     subtitle: "Understand the physiology behind stronger leadership.",
-    image: "/images/carriculam-2.webp",
+    image: "/images/Pillar-2-Maharishi.png",
     alt: "Illustration showing increased brain coherence through TM practice",
     imageLabel: "Science",
     points: [
@@ -48,7 +48,7 @@ const modules: readonly CurriculumModule[] = [
     title: "Leadership & Well-being Integration",
     subtitle:
       "Translate the practice into performance, resilience, and health.",
-    image: "/images/carriculam-3.png",
+    image: "/images/Pillar-3-Maharishi.png",
     alt: "Indian executive in a calm and composed professional setting",
     imageLabel: "Application",
     imageClassName: "object-center",

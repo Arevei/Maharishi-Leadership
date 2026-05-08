@@ -127,7 +127,7 @@ export function Programme() {
                             animation: "breathe 6s ease-in-out infinite",
                           }}
                         ><Image
-                                         src="/images/tm-transfromation.webp"
+                                         src="/images/Programme-Structure-Maharishi-Leadership.jpg"
                                          alt=""
                                          fill
                                          sizes="(min-width: 1024px) 26rem, 100vw"

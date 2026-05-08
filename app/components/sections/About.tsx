@@ -10,21 +10,21 @@ const transformationPoints = [
     index: "01",
     title: "Clarity in Decision-Making",
     desc: "Frontal brain coherence restores the mind's ability to see clearly under pressure.",
-    image: "/images/decision-making.avif",
+    image: "/images/Clarity-Maharishi.jpg",
     reference: "https://doi.org/10.1016/j.ijpsycho.2008.09.007",
   },
   {
     index: "02",
     title: "Emotional Intelligence",
     desc: "Deep rest dissolves reactivity — what remains is steadiness, empathy, and presence.",
-    image: "/images/emotional-intelligence.jpg",
+    image: "/images/Emotional-Intelligence-Maharishi.jpg",
     reference: "https://www.thepermanentejournal.org/doi/10.7812/TPP/17-172",
   },
   {
     index: "03",
     title: "Sustained Focus",
     desc: "Alpha coherence across the brain sustains attention without effort or fatigue.",
-    image: "/images/focus.avif",
+    image: "/images/Focus-Maharishi.jpg",
     reference: "https://doi.org/10.1038/s41598-025-14898-w",
   },
 ] as const;
@@ -54,7 +54,7 @@ export function About() {
 
             <div className="mt-8 max-w-[34rem] overflow-hidden rounded-[2rem] sm:p-5">
               <Image
-                src="/images/Headview.png"
+                src="/images/Premise.png"
                 width={600}
                 height={400}
                 alt="Neuroscience illustration of brain coherence during Transcendental Meditation"

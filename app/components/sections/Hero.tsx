@@ -152,7 +152,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative  -top-8 isolate h-[185vh] overflow-hidden"
+      className="relative bg-white -top-8 isolate h-[185vh] overflow-hidden"
       
     >
       {/* HERO BACKGROUND - only inside hero, not fixed globally */}
@@ -234,7 +234,7 @@ export default function Hero() {
       </div>
 
       {/* HERO CONTENT */}
-      <div className="relative  top-[8vh] z-10">
+      <div className="relative  top-[10vh] z-10">
         {/* SECTION 1 */}
         <div className="sticky top-0 flex h-screen select-none flex-col items-center justify-start overflow-hidden px-6 pt-24 text-center pointer-events-none sm:px-10 sm:pt-20">
           <motion.div
@@ -336,7 +336,7 @@ export default function Hero() {
         </div>
 
         {/* SECTION 2 */}
-        <div className="flex h-screen flex-col items-center justify-center px-6 sm:px-10 pb-20">
+        <div className="flex h-screen flex-col items-center justify-center px-6 sm:px-10 pb-46 sm:pb-40">
           <motion.div
             className="mx-auto flex max-w-2xl flex-col items-center text-center"
             style={{
