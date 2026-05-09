@@ -139,7 +139,7 @@ export function Benefits() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-12">
         <div>
-            <Image src="/images/benefits-boardroom.png" width={600} height={400} alt="Executive in a boardroom with team members in the background" />
+            <Image src="/images/Benefits-Maharishi.jpg" width={600} height={400} alt="Executive in a boardroom with team members in the background" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
