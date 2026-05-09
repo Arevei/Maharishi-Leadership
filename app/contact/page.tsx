@@ -43,29 +43,35 @@ export default async function ContactPage({
                   </p>
             </div>
 
-            <div className="mt-8 flex justify-center gap-3 md:hidden">
-              <a
-                href="#booking"
-                className="rounded-full bg-primary px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white"
-              >
-                Book Intro Talk
-              </a>
+            <div className="mt-8 flex justify-center gap-3 ">
               <a
                 href="#enquiry"
                 className="rounded-full bg-[hsl(var(--sky)/0.45)] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary"
               >
                 Enquire Now
               </a>
+              <a
+                href="#booking"
+                className="rounded-full bg-primary px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white"
+              >
+                Book Intro Talk
+              </a>
+              
             </div>
           </div>
         </section>
 
         <section className="pb-20 md:pb-28">
           <div className="container mx-auto px-6 md:px-12">
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+            <div className="grid items-center gap-8 lg:grid-cols-1 lg:gap-10">
+              
+
+              <article id="enquiry" className="w-full self-center rounded-[2rem] bg-transparent max-w-4xl mx-auto">
+                <ContactInquiryForm initialType={initialType} />
+              </article>
               <article
                 id="booking"
-                className="rounded-[2rem] bg-card p-6 shadow-[0_22px_60px_-40px_rgba(7,29,64,0.28)] md:p-8"
+                className="w-full self-center rounded-[2rem] bg-card p-6 shadow-[0_22px_60px_-40px_rgba(7,29,64,0.28)] md:p-8 max-w-4xl mx-auto"
               >
                 <p className="text-[11px] uppercase tracking-[0.25em] text-[hsl(var(--peach-deep))] font-medium">
                   Book a Meeting
@@ -77,17 +83,13 @@ export default async function ContactPage({
                   Select a suitable time from our calendar and we will connect
                   with you directly.
                 </p>
-                <div className="mt-6 h-[540px] overflow-hidden rounded-[1.5rem] bg-white shadow-[inset_0_0_0_1px_hsl(var(--border))]">
+                <div className="mt-6 h-[900px] overflow-hidden rounded-[1.5rem] bg-white shadow-[inset_0_0_0_1px_hsl(var(--border))]">
                   <iframe
                     title="Calendly booking"
-                    src="https://calendly.com/"
-                    className="h-full w-full"
+                    src="https://calendly.com/maharishileadership/30min?hide_gdpr_banner=1"
+                    className=" w-full h-full"
                   />
                 </div>
-              </article>
-
-              <article id="enquiry" className="rounded-[2rem] bg-transparent">
-                <ContactInquiryForm initialType={initialType} />
               </article>
             </div>
           </div>

@@ -34,3 +34,29 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Contact Form Setup
+
+The contact form now submits to `POST /api/contact-inquiry` and:
+
+1. Saves records to SheetDB
+2. Sends notification email via SMTP app password
+3. Applies anti-abuse protections (IP rate limiting + honeypot field)
+
+Set these environment variables in `.env.local`:
+
+```bash
+SHEETDB_API_URL=https://sheetdb.io/api/v1/your-sheetdb-id
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@example.com
+SMTP_APP_PASSWORD=your-app-password
+CONTACT_NOTIFY_TO=your-email@example.com
+```
+
+Notes:
+
+1. For Gmail app passwords, use `SMTP_HOST=smtp.gmail.com` and `SMTP_PORT=587`.
+2. `CONTACT_NOTIFY_TO` is where inquiry notifications are sent.
+3. The form no longer shows `Inquiry type`; it uses the page context type.

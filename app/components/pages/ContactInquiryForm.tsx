@@ -2,8 +2,6 @@
 
 import { useRef, useState } from "react";
 import {
-  contactEmail,
-  contactInquiryTypes,
   getContactInquiryType,
   type ContactInquiryTypeKey,
 } from "@/data/contact";
@@ -17,8 +15,8 @@ type ContactFormState = {
   email: string;
   organization: string;
   role: string;
-  inquiryType: ContactInquiryTypeKey;
   message: string;
+  website: string;
 };
 
 export function ContactInquiryForm({
@@ -30,11 +28,16 @@ export function ContactInquiryForm({
     email: "",
     organization: "",
     role: "",
-    inquiryType: initialType,
     message: "",
+    website: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "idle" | "success" | "error";
+    message: string;
+  }>({ type: "idle", message: "" });
 
-  const activeInquiry = getContactInquiryType(form.inquiryType);
+  const activeInquiry = getContactInquiryType(initialType);
 
   const handleFieldChange = (
     field: keyof ContactFormState,
@@ -46,33 +49,70 @@ export function ContactInquiryForm({
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!formRef.current?.reportValidity()) {
       return;
     }
 
-    const subject = activeInquiry.subject;
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Organization: ${form.organization || "Not provided"}`,
-      `Role / Title: ${form.role || "Not provided"}`,
-      `Inquiry Type: ${activeInquiry.label}`,
-      "",
-      "Message:",
-      form.message,
-    ].join("\n");
+    setSubmitting(true);
+    setStatus({ type: "idle", message: "" });
 
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("/api/contact-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          inquiryType: initialType,
+        }),
+      });
+
+      const result = (await response.json()) as { ok: boolean; error?: string };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Unable to submit right now.");
+      }
+
+      setStatus({
+        type: "success",
+        message: "Your enquiry has been submitted successfully.",
+      });
+      setForm({
+        name: "",
+        email: "",
+        organization: "",
+        role: "",
+        message: "",
+        website: "",
+      });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Unable to submit right now. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="rounded-[2rem] bg-card p-6 shadow-[0_22px_60px_-40px_rgba(7,29,64,0.3)] md:p-8">
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(event) => handleFieldChange("website", event.target.value)}
+          className="hidden"
+          aria-hidden="true"
+        />
+
         <div className="grid gap-5 md:grid-cols-2">
           <label className="block">
             <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
@@ -133,29 +173,6 @@ export function ContactInquiryForm({
 
         <label className="block">
           <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
-            Inquiry type
-          </span>
-          <select
-            required
-            value={form.inquiryType}
-            onChange={(event) =>
-              handleFieldChange(
-                "inquiryType",
-                event.target.value as ContactInquiryTypeKey,
-              )
-            }
-            className="w-full rounded-[1rem] bg-white px-4 py-3.5 text-primary shadow-[inset_0_0_0_1px_hsl(var(--border))]"
-          >
-            {contactInquiryTypes.map((item) => (
-              <option key={item.key} value={item.key} className="text-primary">
-                {item.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-primary/55">
             Message
           </span>
           <textarea
@@ -172,10 +189,20 @@ export function ContactInquiryForm({
 
         <button
           type="submit"
+          disabled={submitting}
           className="w-full rounded-full bg-[hsl(var(--peach))] px-6 py-4 text-sm font-medium uppercase tracking-[0.2em] text-primary hover:bg-[hsl(var(--peach-deep))] hover:text-primary-foreground"
         >
-          Compose my inquiry email
+          {submitting ? "Submitting..." : "Submit enquiry"}
         </button>
+        {status.type !== "idle" && (
+          <p
+            className={`text-sm ${
+              status.type === "success" ? "text-green-700" : "text-red-700"
+            }`}
+          >
+            {status.message}
+          </p>
+        )}
       </form>
     </div>
   );

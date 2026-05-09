@@ -9,7 +9,7 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
-import { useConsultationDrawer } from "../consultation/ConsultationDrawerProvider";
+import { openCalendlyPopup } from "@/app/lib/calendly";
 
 const TRUST_ITEMS = [
   "50+ years of research",
@@ -25,7 +25,6 @@ export default function Hero() {
   const pendingMaskRef = useRef<string>("");
   const appliedMaskRef = useRef<string>("");
   const [ready] = useState(true);
-  const { openConsultationDrawer } = useConsultationDrawer();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -161,7 +160,7 @@ export default function Hero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(/images/hero-meditation-tree.png)",
+            backgroundImage: "url(/images/Leader-maharishi.png)",
             backgroundPosition: "center 78%",
           }}
         />
@@ -171,7 +170,7 @@ export default function Hero() {
           ref={blurLayerRef}
           className="absolute  inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(/images/hero-meditation-tree.png)",
+            backgroundImage: "url(/images/Leader-maharishi.png)",
             backgroundPosition: "center 78%",
             filter: "blur(26px)",
             transform: "translateZ(0) scale(1.06)",
@@ -388,9 +387,9 @@ export default function Hero() {
             </motion.p>
 
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
-               <button
+              <button
               type="button"
-              onClick={openConsultationDrawer}
+              onClick={openCalendlyPopup}
               className="book-pill ml-2 inline-flex tracking-[0.22em] items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >

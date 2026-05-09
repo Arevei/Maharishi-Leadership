@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { useConsultationDrawer } from "@/app/components/consultation/ConsultationDrawerProvider";
 import { primaryNavLinks } from "@/data/navigation";
 
 type MobileSidebarProps = {
@@ -19,8 +18,6 @@ export function MobileSidebar({
   pathname,
   onClose,
 }: MobileSidebarProps) {
-  const { openConsultationDrawer } = useConsultationDrawer();
-
   useEffect(() => {
     if (!open) {
       return;
@@ -127,17 +124,14 @@ export function MobileSidebar({
             </nav>
 
             <div className="border-t border-border/70 px-5 py-5">
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  openConsultationDrawer();
-                }}
+              <Link
+                href="/contact"
+                onClick={onClose}
                 className="book-pill inline-flex w-full items-center justify-between rounded-full bg-[hsl(var(--cream)/0.96)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary shadow-[0_18px_50px_-28px_rgba(7,29,64,0.35)]"
               >
                 <span className="relative z-10">Consult Now</span>
                 <span className="book-pill-dot relative z-10" />
-              </button>
+              </Link>
             </div>
           </motion.aside>
         </div>

@@ -11,7 +11,7 @@ export function ProfoundHeritage() {
         overflow: "hidden",
       }}
     >
-      <div className="max-w-5xl mx-auto px-8 py-24 sm:py-32 text-center">
+      <div className="max-w-5xl mx-auto px-8 py-16 sm:py-30 text-center border-t">
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,10 @@ export function ProfoundHeritage() {
               preload="metadata"
               playsInline
             >
-              <source src="/videos/profound-heritage.mp4" type="video/mp4" />
+              <source
+                src="https://res.cloudinary.com/dycpdti0a/video/upload/v1778245977/WhatsApp_Video_2026-05-08_at_2.36.52_PM_qrnf3h.mp4"
+                type="video/mp4"
+              />
               Your browser does not support the video tag.
             </video>
           </div>

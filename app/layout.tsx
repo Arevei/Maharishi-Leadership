@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { ConsultationDrawerProvider } from "@/app/components/consultation/ConsultationDrawerProvider";
 import { SmoothScrollProvider } from "@/app/components/providers/SmoothScrollProvider";
@@ -92,6 +93,29 @@ export default function RootLayout({
       className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} h-full bg-background`}
     >
       <body className="min-h-full flex flex-col text-foreground antialiased">
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="afterInteractive"
+        />
+        {/* <Script id="calendly-badge-init" strategy="afterInteractive">
+          {`
+            window.onload = function () {
+              if (window.Calendly && window.Calendly.initBadgeWidget) {
+                window.Calendly.initBadgeWidget({
+                  url: 'https://calendly.com/maharishileadership/30min',
+                  text: 'Schedule time with me',
+                  color: '#0069ff',
+                  textColor: '#ffffff',
+                  branding: true
+                });
+              }
+            };
+          `}
+        </Script> */}
         <SmoothScrollProvider>
           <ConsultationDrawerProvider>{children}</ConsultationDrawerProvider>
         </SmoothScrollProvider>

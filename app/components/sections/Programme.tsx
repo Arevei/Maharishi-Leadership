@@ -75,10 +75,10 @@ export function Programme() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="flex gap-6 py-8 border-b border-border last:border-b-0"
+                  className="flex gap-8 py-8 md:py-14 border-b border-border last:border-b-0"
                 >
                   <div className="flex flex-col items-center w-12 shrink-0">
-                    <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground font-serif text-xl font-light flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground font-serif text-2xl font-light flex items-center justify-center">
                       {phase.num}
                     </div>
                     {index < phases.length - 1 && (
@@ -86,7 +86,7 @@ export function Programme() {
                     )}
                   </div>
                   <div>
-                    <h3 className="font-medium text-primary text-lg mb-2">
+                    <h3 className="font-medium text-primary text-2xl font-semibold mb-2">
                       {phase.title}
                     </h3>
                     <p className="text-primary/65 leading-[1.75] text-[15px]">

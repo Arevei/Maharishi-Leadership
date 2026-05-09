@@ -6,15 +6,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu } from "lucide-react";
-import { useConsultationDrawer } from "@/app/components/consultation/ConsultationDrawerProvider";
 import { MobileSidebar } from "@/app/components/sections/MobileSidebar";
 import { primaryNavLinks } from "@/data/navigation";
 
 export function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { openConsultationDrawer } = useConsultationDrawer();
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (value) => setIsScrolled(value > 40));
 
@@ -25,7 +24,7 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-          isScrolled
+          isScrolled || !isHome
             ? "bg-background/90 py-3 border-b border-border/60 backdrop-blur-xl"
             : "bg-transparent py-6"
         }`}
@@ -34,7 +33,7 @@ export function Navbar() {
           <Link
             href="/"
             className={`group flex items-center gap-3 transition-colors ${
-              isScrolled ? "text-primary" : "text-primary-foreground"
+              isScrolled || !isHome ? "text-primary" : "text-primary-foreground"
             }`}
           >
             <Image
@@ -57,6 +56,7 @@ export function Navbar() {
                   data-active={isActive}
                   className={`inline-flex text-[11px] font-semibold uppercase  transition-colors ${
                     isScrolled
+                      || !isHome
                       ? isActive
                         ? "text-primary"
                         : "text-primary/70 hover:text-primary"
@@ -69,15 +69,14 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <button
-              type="button"
-              onClick={openConsultationDrawer}
+            <Link
+              href="/contact"
               className="book-pill ml-2 inline-flex items-center gap-4 rounded-full border bg-primary text-white px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] hover:bg-white hover:text-primary shadow-[0_18px_38px_-24px_rgba(7,29,64,0.22)]"
               data-testid="nav-cta"
             >
               <span className="relative z-10">Consult Now</span>
               <span className="book-pill-dot relative z-10" />
-            </button>
+            </Link>
           </nav>
 
           <button
